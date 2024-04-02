@@ -121,6 +121,8 @@
 				<connect2 to="Operational_impacts.Converter_16" from="Demand_and_behaviour.percentage_of_demand_through_the_hub"/>
 				<connect to="Operational_impacts.Converter_15" from="Demand_and_behaviour.percentage_of_receivers_adopters"/>
 				<connect2 to="Operational_impacts.Converter_15" from="Demand_and_behaviour.percentage_of_receivers_adopters"/>
+				<connect to="Operational_impacts.percentage_of_receivers_adopters" from="Demand_and_behaviour.percentage_of_receivers_adopters"/>
+				<connect2 to="Operational_impacts.percentage_of_receivers_adopters" from="Demand_and_behaviour.percentage_of_receivers_adopters"/>
 				<connect to="Hub_fees.Receivers_Adopters" from="Demand_and_behaviour.Receivers_Adopters"/>
 				<connect2 to="Hub_fees.Receivers_Adopters" from="Demand_and_behaviour.Receivers_Adopters"/>
 				<connect to="Demand_and_behaviour.ADJUSTMENT_TIME" from=".ADJUSTMENT_TIME"/>
@@ -271,8 +273,8 @@
 				<connect2 to="Operational_impacts.LSP_Potential_Adopters" from="Demand_and_behaviour.LSP_Potential_Adopters"/>
 				<connect to="Operational_impacts.LSP_Potential_Adopters_1" from="Demand_and_behaviour.LSP_Potential_Adopters"/>
 				<connect2 to="Operational_impacts.LSP_Potential_Adopters_1" from="Demand_and_behaviour.LSP_Potential_Adopters"/>
-				<connect to="Operational_impacts.NUMBER_OF_LSP_1" from=".NUMBER_OF_LSP"/>
-				<connect2 to="Operational_impacts.NUMBER_OF_LSP_1" from="NUMBER_OF_LSP"/>
+				<connect to="Operational_impacts.percentage_of_receivers_adopters" from="Demand_and_behaviour.percentage_of_receivers_adopters"/>
+				<connect2 to="Operational_impacts.percentage_of_receivers_adopters" from="Demand_and_behaviour.percentage_of_receivers_adopters"/>
 				<connect to="Operational_impacts.TIME_OF_POLICY" from=".TIME_OF_POLICY"/>
 				<connect2 to="Operational_impacts.TIME_OF_POLICY" from="TIME_OF_POLICY"/>
 				<connect to="Operational_impacts.TOURS_PER_MONTH_1" from=".TOURS_PER_MONTH"/>
@@ -601,7 +603,7 @@
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="4" isee:page_rows="4" isee:scroll_x="101" isee:scroll_y="2" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="5" isee:page_rows="4" isee:scroll_x="2727.14" isee:scroll_y="830.714" zoom="140" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="black" background="white" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -750,10 +752,6 @@
 				</connector>
 				<connector uid="23" isee:thickness="2" angle="212.91">
 					<from>Demand_and_behaviour</from>
-					<to>Operational_impacts</to>
-				</connector>
-				<connector uid="24" color="#FFFC79" font_color="#FFFC79" angle="311.492">
-					<from>NUMBER_OF_LSP</from>
 					<to>Operational_impacts</to>
 				</connector>
 				<aux x="287" y="403" name="MAXIMUM NUMBER OF STOPS PER MONTH PER RECEIVER"/>
@@ -973,6 +971,72 @@
 						</plot>
 					</graph>
 				</stacked_container>
+				<stacked_container uid="67" x="3155.71" y="1128">
+					<graph width="350" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Hub_fees.revenue"/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Economic_impacts.hub_total_cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="68" x="3532.14" y="1128">
+					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Small]"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="69" x="3891.14" y="1128">
+					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Small]"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="70" x="3531.85" y="1385.71">
+					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Medium]"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="71" x="3891.14" y="1385.71">
+					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Medium]"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="72" x="3529.57" y="1647">
+					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Large]"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="73" x="3888.86" y="1647">
+					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Large]"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="74" x="1259.29" y="1670">
+					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Operational_impacts.total_km_in_area"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="75" x="1617" y="1670">
+					<graph width="350" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Operational_impacts.hub_vehicle"/>
+						</plot>
+					</graph>
+				</stacked_container>
 			</view>
 		</views>
 	</model>
@@ -1043,8 +1107,8 @@
 				<eqn>IF Converter_8 = 0 THEN 1.25 ELSE Converter_10/(RECEIVERS_PERCEIVED_VALUE_BASE*Converter_8)</eqn>
 				<gf>
 					<xscale min="0" max="2"/>
-					<yscale min="-0.3" max="0.5"/>
-					<ypts>0.5,0.4,0.3,0.2,0.1,0,-0.1,-0.2,-0.3</ypts>
+					<yscale min="-0.2" max="0.2"/>
+					<ypts>0.2,0.15,0.1,0.05,0,-0.05,-0.1,-0.15,-0.2</ypts>
 				</gf>
 				<units>dmnl</units>
 			</aux>
@@ -1278,7 +1342,7 @@ Converter_11*adopters_with_non_adopters_contacts+LSP_adoption_from_advertisement
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="2" isee:page_rows="3" isee:scroll_x="14" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="2" isee:page_rows="3" isee:scroll_y="3.75" zoom="80" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="black" background="white" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -1317,7 +1381,7 @@ Converter_11*adopters_with_non_adopters_contacts+LSP_adoption_from_advertisement
 					</graph>
 					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 				</style>
-				<aux label_side="top" x="728.625" y="102" name="RECEIVERS PERCEIVED VALUE BASE"/>
+				<aux label_side="top" x="692.196" y="107.714" name="RECEIVERS PERCEIVED VALUE BASE"/>
 				<aux font_style="italic" font_weight="bold" x="811" y="190" name="Converter 1"/>
 				<aux font_style="italic" font_weight="bold" x="500" y="426" name="Converter 2"/>
 				<aux font_style="italic" font_weight="bold" x="993" y="578" name="Converter 3"/>
@@ -1571,7 +1635,7 @@ Converter_11*adopters_with_non_adopters_contacts+LSP_adoption_from_advertisement
 					<from>Converter_10</from>
 					<to>adoption_rate_receivers</to>
 				</connector>
-				<connector uid="82" angle="234.441">
+				<connector uid="82" angle="250.373">
 					<from>RECEIVERS_PERCEIVED_VALUE_BASE</from>
 					<to>adoption_rate_receivers</to>
 				</connector>
@@ -1579,8 +1643,8 @@ Converter_11*adopters_with_non_adopters_contacts+LSP_adoption_from_advertisement
 					<from>Converter_8</from>
 					<to>adoption_rate_receivers</to>
 				</connector>
-				<aux font_style="italic" font_weight="bold" x="236.375" y="613.292" name="Converter 11"/>
-				<connector uid="84" angle="254.024">
+				<aux font_style="italic" font_weight="bold" x="245.232" y="642.863" width="18" height="18" name="Converter 11"/>
+				<connector uid="84" angle="292.589">
 					<from>Converter_11</from>
 					<to>LSP_adoption</to>
 				</connector>
@@ -1898,7 +1962,7 @@ hub_total_cost</eqn>
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="2" isee:page_rows="2" isee:scroll_x="213" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="2" isee:page_rows="2" isee:scroll_y="3" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="black" background="white" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -2617,10 +2681,10 @@ ELSE 0</eqn>
 				<dimensions>
 					<dim name="LSP"/>
 				</dimensions>
-				<eqn>time_for_unloading_to_the_hub_per_LSP_non_adopter + time_for_delivering_packages_per_LSP_non_adopter + time_for_stops_per_LSP_non_adopter + time_for_distance_per_LSP</eqn>
+				<eqn>time_for_unloading_to_the_hub_per_LSP_non_adopter + time_for_delivering_packages_per_LSP_non_adopter + time_for_stops_per_LSP_non_adopter + time_for_distance_per_LSP_non_adopter</eqn>
 				<units>hour/month/LSP</units>
 			</aux>
-			<aux name="time for distance per LSP">
+			<aux name="time for distance per LSP non adopter">
 				<doc>Time taken by each LSP to travel around the area</doc>
 				<dimensions>
 					<dim name="LSP"/>
@@ -2682,19 +2746,8 @@ INT(hub_packages_per_tour/Converter_3)+1
 			</aux>
 			<aux name="total vehicle in the area" isee:derived_units="true">
 				<doc>Total number of vehicles</doc>
-				<eqn>hub_vehicle+SUM(vehicle_per_LSP_non_adopter*LSP_Potential_Adopters)</eqn>
+				<eqn>hub_vehicle+SUM(vehicle_per_LSP_non_adopter*LSP_Potential_Adopters*(1-percentage_of_receivers_adopters))</eqn>
 				<units>vehicle</units>
-			</aux>
-			<aux name="total number of stops" isee:derived_units="true">
-				<eqn>hub_number_of_stops+SUM(number_of_stops_per_LSP_non_adopter*NUMBER_OF_LSP_1)</eqn>
-				<units>delivery/month</units>
-			</aux>
-			<aux name="NUMBER OF LSP 1" access="input">
-				<dimensions>
-					<dim name="LSP"/>
-				</dimensions>
-				<eqn>100</eqn>
-				<units>LSPs</units>
 			</aux>
 			<aux name="Converter 18" access="input">
 				<units>stop/month/receiver</units>
@@ -2837,6 +2890,10 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 				<non_negative/>
 				<units>LSP</units>
 			</stock>
+			<aux name="percentage of receivers adopters" access="input">
+				<eqn>{Enter equation for use when not hooked up to other models}</eqn>
+				<units>dmnl</units>
+			</aux>
 		</variables>
 		<views>
 			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
@@ -2884,7 +2941,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="4" isee:page_rows="3" isee:scroll_x="1006" isee:scroll_y="159" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="4" isee:page_rows="3" isee:scroll_x="682.5" zoom="80" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="black" background="white" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -2925,13 +2982,13 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 				</style>
 				<aux font_style="italic" font_weight="bold" x="1058.71" y="346.429" name="Converter 1"/>
 				<aux font_style="italic" font_weight="bold" x="1032.38" y="161.143" name="Converter 2"/>
-				<aux font_style="italic" font_weight="bold" x="1526.33" y="142.339" name="Converter 3"/>
-				<aux font_style="italic" font_weight="bold" x="1804.1" y="311.339" name="Converter 5"/>
-				<aux font_style="italic" font_weight="bold" x="1658" y="202.339" name="Converter 7"/>
+				<aux font_style="italic" font_weight="bold" x="1626.33" y="109.839" name="Converter 3"/>
+				<aux font_style="italic" font_weight="bold" x="1961.6" y="301.339" name="Converter 5"/>
+				<aux font_style="italic" font_weight="bold" x="1815.5" y="192.339" name="Converter 7"/>
 				<aux font_style="italic" font_weight="bold" label_side="bottom" x="652.75" y="789.089" name="Converter 8"/>
 				<aux font_style="italic" font_weight="bold" x="1268.57" y="731.714" name="Converter 9"/>
-				<aux font_style="italic" font_weight="bold" x="1891.3" y="449.738" name="Converter 10"/>
-				<aux font_style="italic" font_weight="bold" x="1301" y="550.988" name="Converter 11"/>
+				<aux font_style="italic" font_weight="bold" x="2039.8" y="430.738" width="18" height="18" name="Converter 10"/>
+				<aux font_style="italic" font_weight="bold" x="1297" y="570.988" name="Converter 11"/>
 				<aux font_style="italic" font_weight="bold" x="634.75" y="413.173" name="Converter 12"/>
 				<aux color="black" font_style="italic" font_weight="bold" x="696.75" y="289.339" name="Converter 13"/>
 				<aux color="black" font_style="italic" font_weight="bold" label_side="top" x="652.75" y="648.612" name="Converter 14"/>
@@ -2945,7 +3002,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<from>Converter_14</from>
 					<to>number_of_stops_per_LSP_non_adopter</to>
 				</connector>
-				<aux color="black" font_style="italic" font_weight="bold" label_side="bottom" x="945.765" y="612.612" name="Converter 15"/>
+				<aux color="black" font_style="italic" font_weight="bold" label_side="bottom" x="986.625" y="612.612" name="Converter 15"/>
 				<aux color="black" x="577.625" y="337.339" name="hub packages per tour"/>
 				<connector uid="8" color="black" angle="201.946">
 					<from>Converter_13</from>
@@ -2982,20 +3039,20 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<to>total_km_in_area</to>
 				</connector>
 				<aux color="black" label_side="top" x="1050.38" y="538.988" name="time for unloading\nto the hub per LSP non adopter"/>
-				<aux color="black" x="808.375" y="588.988" name="demand per LSP non adopter to\nbe delivered at hub"/>
-				<connector uid="20" color="black" angle="20.9631">
+				<aux color="black" x="854" y="621.988" name="demand per LSP non adopter to\nbe delivered at hub"/>
+				<connector uid="20" color="black" angle="7.53608">
 					<from>Converter_14</from>
 					<to>demand_per_LSP_non_adopter_to_be_delivered_at_hub</to>
 				</connector>
-				<connector uid="21" color="black" angle="170.243">
+				<connector uid="21" color="black" angle="184.044">
 					<from>Converter_15</from>
 					<to>demand_per_LSP_non_adopter_to_be_delivered_at_hub</to>
 				</connector>
-				<connector uid="22" color="black" angle="277.666">
+				<connector uid="22" color="black" angle="254.663">
 					<from>demand_per_LSP_non_adopter_to_be_delivered_at_hub</from>
 					<to>number_of_stops_per_LSP_non_adopter</to>
 				</connector>
-				<connector uid="23" color="black" angle="7.54005">
+				<connector uid="23" color="black" angle="22.9113">
 					<from>demand_per_LSP_non_adopter_to_be_delivered_at_hub</from>
 					<to>time_for_unloading_to_the_hub_per_LSP_non_adopter</to>
 				</connector>
@@ -3005,7 +3062,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<from>Converter_14</from>
 					<to>demand_per_LSP_non_adopter_to_be_delivered_to_receivers</to>
 				</connector>
-				<connector uid="25" color="black" angle="131.322">
+				<connector uid="25" color="black" angle="127.966">
 					<from>demand_per_LSP_non_adopter_to_be_delivered_at_hub</from>
 					<to>demand_per_LSP_non_adopter_to_be_delivered_to_receivers</to>
 				</connector>
@@ -3025,10 +3082,10 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<to>time_for_stops_per_LSP_non_adopter</to>
 				</connector>
 				<aux color="#38B389" background="#38B389" font_color="#38B389" x="1208" y="494.738" name="time in area per LSP non adopter"/>
-				<aux color="black" x="1323" y="675.363" name="time for distance per LSP"/>
+				<aux color="black" x="1323" y="675.363" name="time for distance per LSP non adopter"/>
 				<connector uid="32" color="black" angle="332.133">
 					<from>LSP_non_adopter_km_in_area</from>
-					<to>time_for_distance_per_LSP</to>
+					<to>time_for_distance_per_LSP_non_adopter</to>
 				</connector>
 				<connector uid="34" color="black" angle="14.7092">
 					<from>time_for_delivering_packages_per_LSP_non_adopter</from>
@@ -3043,7 +3100,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<to>time_in_area_per_LSP_non_adopter</to>
 				</connector>
 				<connector uid="37" color="black" angle="122.484">
-					<from>time_for_distance_per_LSP</from>
+					<from>time_for_distance_per_LSP_non_adopter</from>
 					<to>time_in_area_per_LSP_non_adopter</to>
 				</connector>
 				<aux color="black" x="854" y="383.339" name="hub time for delivering packages"/>
@@ -3076,28 +3133,28 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					</from>
 					<to>hub_time</to>
 				</connector>
-				<aux color="#38B389" background="#38B389" font_color="#38B389" x="1593" y="346.429" name="vehicle per LSP non adopter"/>
+				<aux color="#38B389" background="#38B389" font_color="#38B389" x="1750.5" y="336.429" name="vehicle per LSP non adopter"/>
 				<connector uid="53" color="black" angle="204.664">
 					<from>
 						<alias uid="54"/>
 					</from>
 					<to>vehicle_per_LSP_non_adopter</to>
 				</connector>
-				<aux color="black" x="1469" y="406.25" name="time per tour per LSP non adopter"/>
-				<connector uid="57" color="black" angle="18.7286">
+				<aux color="black" x="1579" y="404.738" name="time per tour per LSP non adopter"/>
+				<connector uid="57" color="black" angle="13.6358">
 					<from>time_in_area_per_LSP_non_adopter</from>
 					<to>time_per_tour_per_LSP_non_adopter</to>
 				</connector>
-				<connector uid="58" color="black" angle="25.754">
+				<connector uid="58" color="black" angle="21.7176">
 					<from>time_per_tour_per_LSP_non_adopter</from>
 					<to>vehicle_per_LSP_non_adopter</to>
 				</connector>
-				<aux color="black" x="1250.57" y="229.339" name="hub time per tour"/>
+				<aux color="black" x="1350.57" y="196.839" name="hub time per tour"/>
 				<connector uid="59" color="black" angle="348.836">
 					<from>hub_time</from>
 					<to>hub_time_per_tour</to>
 				</connector>
-				<aux color="#FC8965" background="#FC8965" font_color="#FC8965" x="1451" y="224.714" name="hub vehicle"/>
+				<aux color="#FC8965" background="#FC8965" font_color="#FC8965" x="1551" y="192.214" name="hub vehicle"/>
 				<connector uid="61" color="black" angle="311.934">
 					<from>
 						<alias uid="62"/>
@@ -3108,28 +3165,14 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<from>hub_time_per_tour</from>
 					<to>hub_vehicle</to>
 				</connector>
-				<aux color="black" x="1504" y="289.339" name="total vehicle in the area"/>
+				<aux color="black" x="1604" y="256.839" name="total vehicle in the area"/>
 				<connector uid="66" color="black" angle="309.356">
 					<from>hub_vehicle</from>
 					<to>total_vehicle_in_the_area</to>
 				</connector>
-				<connector uid="67" color="black" angle="147.322">
+				<connector uid="67" color="black" angle="151.486">
 					<from>vehicle_per_LSP_non_adopter</from>
 					<to>total_vehicle_in_the_area</to>
-				</connector>
-				<aux color="black" x="445" y="417.988" name="total number of stops"/>
-				<connector uid="69" color="black" angle="183.18">
-					<from>hub_number_of_stops</from>
-					<to>total_number_of_stops</to>
-				</connector>
-				<connector uid="70" color="black" angle="200.529">
-					<from>number_of_stops_per_LSP_non_adopter</from>
-					<to>total_number_of_stops</to>
-				</connector>
-				<aux color="black" font_style="italic" font_weight="bold" x="518" y="488.738" name="NUMBER OF LSP 1"/>
-				<connector uid="71" color="black" angle="140.172">
-					<from>NUMBER_OF_LSP_1</from>
-					<to>total_number_of_stops</to>
 				</connector>
 				<aux font_style="italic" font_weight="bold" x="577.625" y="105.571" name="Converter 18"/>
 				<aux font_style="italic" font_weight="bold" x="685.571" y="64.4286" name="Converter 19"/>
@@ -3170,7 +3213,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<from>Converter_8</from>
 					<to>number_of_stops_per_LSP_non_adopter</to>
 				</connector>
-				<connector uid="89" angle="177.259">
+				<connector uid="89" angle="172.607">
 					<from>Converter_11</from>
 					<to>time_for_unloading_to_the_hub_per_LSP_non_adopter</to>
 				</connector>
@@ -3185,14 +3228,14 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 				</connector>
 				<connector uid="95" angle="45.9942">
 					<from>Converter_9</from>
-					<to>time_for_distance_per_LSP</to>
+					<to>time_for_distance_per_LSP_non_adopter</to>
 				</connector>
-				<aux font_style="italic" font_weight="bold" x="1286.57" y="390.988" name="TOURS PER\nMONTH 1"/>
+				<aux font_style="italic" font_weight="bold" x="1386.57" y="358.488" name="TOURS PER\nMONTH 1"/>
 				<connector uid="97" angle="102.555">
 					<from>TOURS_PER_MONTH_1</from>
 					<to>hub_time_per_tour</to>
 				</connector>
-				<connector uid="98" angle="355.218">
+				<connector uid="98" angle="346.485">
 					<from>TOURS_PER_MONTH_1</from>
 					<to>time_per_tour_per_LSP_non_adopter</to>
 				</connector>
@@ -3200,7 +3243,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<from>Converter_3</from>
 					<to>hub_vehicle</to>
 				</connector>
-				<connector uid="100" angle="186.169">
+				<connector uid="100" angle="179.973">
 					<from>Converter_7</from>
 					<to>hub_vehicle</to>
 				</connector>
@@ -3214,12 +3257,12 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<from>demand_per_LSP</from>
 					<to>time_in_area_per_LSP_adopter</to>
 				</connector>
-				<connector uid="116" angle="333.938">
+				<connector uid="116" angle="342.246">
 					<from>Converter_11</from>
 					<to>time_in_area_per_LSP_adopter</to>
 				</connector>
-				<aux x="1552.9" y="499.988" name="time per tour per LSP adopter"/>
-				<connector uid="117" angle="41.8132">
+				<aux x="1681.65" y="498.738" name="time per tour per LSP adopter"/>
+				<connector uid="117" angle="24.0932">
 					<from>time_in_area_per_LSP_adopter</from>
 					<to>time_per_tour_per_LSP_adopter</to>
 				</connector>
@@ -3227,12 +3270,12 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<from>TOURS_PER_MONTH_1</from>
 					<to>time_per_tour_per_LSP_adopter</to>
 				</connector>
-				<aux color="#1E5D94" background="#1E5D94" font_color="#1E5D94" x="1676" y="449.738" name="vehicle per LSP adopter"/>
+				<aux color="#1E5D94" background="#1E5D94" font_color="#1E5D94" x="1833.5" y="439.738" name="vehicle per LSP adopter"/>
 				<connector uid="119" angle="189.438">
 					<from>Converter_5</from>
 					<to>vehicle_per_LSP_non_adopter</to>
 				</connector>
-				<aux x="1790" y="406.25" name="time to and from area"/>
+				<aux x="1947.5" y="396.25" name="time to and from area"/>
 				<connector uid="121" angle="156.766">
 					<from>Converter_10</from>
 					<to>time_to_and_from_area</to>
@@ -3241,7 +3284,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<from>time_to_and_from_area</from>
 					<to>vehicle_per_LSP_non_adopter</to>
 				</connector>
-				<connector uid="123" angle="22.2063">
+				<connector uid="123" angle="21.2332">
 					<from>time_per_tour_per_LSP_adopter</from>
 					<to>vehicle_per_LSP_adopter</to>
 				</connector>
@@ -3272,7 +3315,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<from>Converter_20</from>
 					<to>LSP_non_adopter_km_in_area</to>
 				</connector>
-				<aux font_style="italic" font_weight="bold" x="1894.48" y="350.738" name="Converter 6"/>
+				<aux font_style="italic" font_weight="bold" x="2051.98" y="340.738" name="Converter 6"/>
 				<connector uid="120" angle="207.982">
 					<from>Converter_6</from>
 					<to>time_to_and_from_area</to>
@@ -3282,7 +3325,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<from>Converter_21</from>
 					<to>total_km_in_area</to>
 				</connector>
-				<stock font_style="italic" font_weight="bold" x="1370" y="315" name="LSP Potential\nAdopters"/>
+				<stock font_style="italic" font_weight="bold" x="1464" y="273.5" name="LSP Potential\nAdopters"/>
 				<connector uid="132" angle="346.551">
 					<from>LSP_Potential_Adopters</from>
 					<to>total_vehicle_in_the_area</to>
@@ -3308,32 +3351,32 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<from>CO2_emissions_from_electricity</from>
 					<to>CO2_emissions</to>
 				</connector>
-				<aux x="1904.5" y="793.167" name="diesel consumption"/>
-				<aux font_style="italic" font_weight="bold" x="1870.19" y="637.858" name="LITER OF DIESEL\nPER KM"/>
-				<aux x="1870.19" y="712.167" name="diesel consumption\nper LSP non adopter"/>
-				<connector uid="138" angle="292.956">
+				<aux x="1877" y="891.917" name="diesel consumption"/>
+				<aux font_style="italic" font_weight="bold" x="1824.69" y="725.358" name="LITER OF DIESEL\nPER KM"/>
+				<aux x="1842.69" y="810.917" name="diesel consumption\nper LSP non adopter"/>
+				<connector uid="138" angle="269.06">
 					<from>diesel_consumption_per_LSP_non_adopter</from>
 					<to>diesel_consumption</to>
 				</connector>
-				<connector uid="139" angle="270">
+				<connector uid="139" angle="281.881">
 					<from>LITER_OF_DIESEL_PER_KM</from>
 					<to>diesel_consumption_per_LSP_non_adopter</to>
 				</connector>
-				<connector uid="142" angle="291.386">
+				<connector uid="142" angle="294.483">
 					<from>diesel_consumption</from>
 					<to>CO2_emissions_from_diesel</to>
 				</connector>
-				<aux x="2296.5" y="786" name="kWh consumption"/>
-				<aux font_style="italic" font_weight="bold" x="2434.45" y="718.095" name="kWh CONSUMPTION\nPER KM"/>
+				<aux x="2269" y="884.75" name="kWh consumption"/>
+				<aux font_style="italic" font_weight="bold" x="2406.95" y="816.845" name="kWh CONSUMPTION\nPER KM"/>
 				<connector uid="143" angle="206.208">
 					<from>kWh_CONSUMPTION_PER_KM</from>
 					<to>kWh_consumption</to>
 				</connector>
-				<connector uid="145" angle="249.564">
+				<connector uid="145" angle="245.739">
 					<from>kWh_consumption</from>
 					<to>CO2_emissions_from_electricity</to>
 				</connector>
-				<aux font_style="italic" font_weight="bold" x="2080.17" y="655.858" name="TIME OF POLICY"/>
+				<aux font_style="italic" font_weight="bold" x="2052.67" y="754.608" name="TIME OF POLICY"/>
 				<connector uid="147" angle="195.012">
 					<from>TIME_OF_POLICY</from>
 					<to>diesel_consumption_per_LSP_non_adopter</to>
@@ -3342,7 +3385,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<from>TIME_OF_POLICY</from>
 					<to>kWh_consumption_per_LSP_non_adopter</to>
 				</connector>
-				<aux x="2298.5" y="694.167" name="kWh consumption\nper LSP non adopter"/>
+				<aux x="2271" y="792.917" name="kWh consumption\nper LSP non adopter"/>
 				<connector uid="149" angle="120.754">
 					<from>kWh_CONSUMPTION_PER_KM</from>
 					<to>kWh_consumption_per_LSP_non_adopter</to>
@@ -3351,8 +3394,8 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<from>kWh_consumption_per_LSP_non_adopter</from>
 					<to>kWh_consumption</to>
 				</connector>
-				<stock font_style="italic" font_weight="bold" x="2075.98" y="759.5" name="LSP Potential\nAdopters 1"/>
-				<connector uid="151" angle="191.108">
+				<stock font_style="italic" font_weight="bold" x="2084.17" y="869.5" name="LSP Potential\nAdopters 1"/>
+				<connector uid="151" angle="186.176">
 					<from>LSP_Potential_Adopters_1</from>
 					<to>diesel_consumption</to>
 				</connector>
@@ -3374,9 +3417,14 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					</from>
 					<to>kWh_consumption</to>
 				</connector>
-				<connector uid="157" angle="354.755">
+				<connector uid="157" angle="355.283">
 					<from>LSP_Potential_Adopters_1</from>
 					<to>kWh_consumption</to>
+				</connector>
+				<aux font_style="italic" font_weight="bold" x="1546.25" y="307.339" name="percentage of receivers adopters"/>
+				<connector uid="163" angle="29.0546">
+					<from>percentage_of_receivers_adopters</from>
+					<to>total_vehicle_in_the_area</to>
 				</connector>
 				<alias color="black" background="white" font_style="italic" label_side="top" uid="29" x="1077" y="704.714" width="18" height="18">
 					<shape type="circle" radius="18"/>
@@ -3386,16 +3434,16 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<shape type="circle" radius="18"/>
 					<of>hub_time_for_distance</of>
 				</alias>
-				<alias color="black" font_style="italic" label_side="top" uid="54" x="1737" y="267.173" width="18" height="18">
+				<alias color="black" font_style="italic" label_side="top" uid="54" x="1894.5" y="257.173" width="18" height="18">
 					<of>packages_per_tour_per_LSP</of>
 				</alias>
-				<alias color="black" font_style="italic" uid="62" x="1368" y="133.339" width="18" height="18">
+				<alias color="black" font_style="italic" uid="62" x="1468" y="100.839" width="18" height="18">
 					<of>hub_packages_per_tour</of>
 				</alias>
-				<alias color="#38B389" background="#38B389" font_style="italic" font_color="#38B389" uid="153" x="2079" y="559" width="18" height="18">
+				<alias color="#38B389" background="#38B389" font_style="italic" font_color="#38B389" label_side="top" uid="153" x="2039" y="657.75" width="18" height="18">
 					<of>LSP_non_adopter_km_in_area</of>
 				</alias>
-				<alias color="#FC8965" background="#FC8965" font_style="italic" font_color="#FC8965" uid="156" x="2432" y="795" width="18" height="18">
+				<alias color="#FC8965" background="#FC8965" font_style="italic" font_color="#FC8965" uid="156" x="2404.5" y="893.75" width="18" height="18">
 					<of>hub_km_in_area</of>
 				</alias>
 			</view>
@@ -3415,7 +3463,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 			<gf>
 				<yscale min="0" max="2"/>
 				<xpts>0,36,37,120</xpts>
-				<ypts>6367,6367,6367,6367</ypts>
+				<ypts>4600,4600,4600,4600</ypts>
 			</gf>
 		</isee:control>
 		<isee:control priority="imex" name="COST_PER_kWh" value="2"/>
@@ -3478,7 +3526,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 		<isee:control priority="imex" name="PACKAGES_PER_STOP[Large]" value="10"/>
 		<isee:control priority="imex" name="PACKAGES_PER_STOP[Medium]" value="4"/>
 		<isee:control priority="imex" name="PACKAGES_PER_STOP[Small]" value="1"/>
-		<isee:control priority="imex" name="PROFIT_GOAL_IN_PERCENTAGE" value="0"/>
+		<isee:control priority="imex" name="PROFIT_GOAL_IN_PERCENTAGE" value="0.01"/>
 		<isee:control priority="imex" name="RECEIVERS_AD_EFFECTIVENESS" type="graphical">
 			<gf>
 				<yscale min="0" max="100"/>
@@ -3486,9 +3534,9 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 				<ypts>0,0.1,0.05,0.01,0,0,0</ypts>
 			</gf>
 		</isee:control>
-		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Large]" value="17860"/>
-		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Medium]" value="4370"/>
-		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Small]" value="570"/>
+		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Large]" value="26320"/>
+		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Medium]" value="6440"/>
+		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Small]" value="840"/>
 		<isee:control priority="imex" name="SHARE_OF_DEMAND_TO_DIFFERENT_LSP_SIZES[Large]" value="0.39"/>
 		<isee:control priority="imex" name="SHARE_OF_DEMAND_TO_DIFFERENT_LSP_SIZES[Medium]" value="0.53"/>
 		<isee:control priority="imex" name="SHARE_OF_DEMAND_TO_DIFFERENT_LSP_SIZES[Small]" value="0.08"/>
