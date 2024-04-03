@@ -26,13 +26,41 @@
 	</dimensions>
 	<isee:prefs saved_runs="20" keep="false" show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="model" isee:design="Deluxe Prev-Next Blue Green Pastel" isee:design_custom="false" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" rerun_on_structure_change="false" rifp="true"/>
 	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" max_advance_time_in_ms="0" model_stops_when_players_drop="false" observer_start_page="home_page" enabled="false"/>
-	<isee:time_formats default_format="Builtin">
+	<isee:time_formats default_format="year">
 		<isee:time_format name="Builtin" type="adaptive"/>
+		<isee:time_format name="year" type="grouped" start_offset="2022" start_offset_units="years">
+			<isee:time_format_groupings>
+				<isee:time_format_grouping unit="years" prefix=""/>
+			</isee:time_format_groupings>
+		</isee:time_format>
 	</isee:time_formats>
 	<default_format/>
 	<data>
 		<import isee:overwrite="false" orientation="horizontal" resource="r../LSP and hub operator input.xlsx" type="Excel" worksheet="Sheet1"/>
 	</data>
+	<isee:sensi_specs_list active_index="1">
+		<isee:sensi_specs name="Multivariate scenario 1" method="grid">
+			<isee:variable type="adhoc" name="DELIVERY_TIME_PER_PACKAGE">0.056,0.07,0.084</isee:variable>
+			<isee:variable type="adhoc" name="HUB_FIXED_COST">43840,54800,65760</isee:variable>
+			<isee:variable type="adhoc" name="MAX_INCREASE_IN_FEE">24,30,36</isee:variable>
+			<isee:variable type="adhoc" name="TIME_FOR_UNLOADING_TO_THE_HUB">0.008,0.01,0.012</isee:variable>
+			<isee:variable type="adhoc" name="Operational_impacts.PACKAGES_PER_STOP_BASE">0.8,1,1.2</isee:variable>
+		</isee:sensi_specs>
+		<isee:sensi_specs name="Multivariate scenario 3" method="grid">
+			<isee:variable type="adhoc" name="DELIVERY_TIME_PER_PACKAGE">0.056,0.07,0.084</isee:variable>
+			<isee:variable type="adhoc" name="HUB_FIXED_COST">43840,54800,65760</isee:variable>
+			<isee:variable type="adhoc" name="MAX_INCREASE_IN_FEE">24,30,36</isee:variable>
+			<isee:variable type="adhoc" name="TIME_FOR_UNLOADING_TO_THE_HUB">0.008,0.01,0.012</isee:variable>
+			<isee:variable type="adhoc" name="Operational_impacts.PACKAGES_PER_STOP_BASE">0.8,1,1.2</isee:variable>
+			<isee:variable type="adhoc" name="Demand_and_behaviour.RECEIVERS_PERCEIVED_VALUE_BASE">0.8,1,1.2</isee:variable>
+		</isee:sensi_specs>
+	</isee:sensi_specs_list>
+	<isee:optimizer_specs_list active_index="0">
+		<isee:optimizer_specs name="Optimization" method="Powell" use_additional_starts_file="false" additional_starts="0" report_interval="1" confidence_range="0"/>
+	</isee:optimizer_specs_list>
+	<isee:payoff_specs_list>
+		<isee:payoff_specs name="Payoff"/>
+	</isee:payoff_specs_list>
 	<model_units>
 		<unit name="Kilometers">
 			<eqn/>
@@ -157,6 +185,8 @@
 				<connect2 to="Demand_and_behaviour.Converter_11" from="Economic_impacts.adjusted_monetary_value"/>
 				<connect to="Hub_fees.Converter_6" from="Economic_impacts.hub_total_cost"/>
 				<connect2 to="Hub_fees.Converter_6" from="Economic_impacts.hub_total_cost"/>
+				<connect to="Hub_fees.Converter_14" from="Economic_impacts.total_cost_of_operation"/>
+				<connect2 to="Hub_fees.Converter_14" from="Economic_impacts.total_cost_of_operation"/>
 				<connect to="Economic_impacts.Converter_1" from="Operational_impacts.hub_km_in_area"/>
 				<connect2 to="Economic_impacts.Converter_1" from="Operational_impacts.hub_km_in_area"/>
 				<connect to="Economic_impacts.Converter_2" from="Operational_impacts.hub_vehicle"/>
@@ -513,6 +543,8 @@
 				<connect2 to="Hub_fees.ADJUSTMENT_TIME_FOR_FEES" from="ADJUSTMENT_TIME_FOR_FEES"/>
 				<connect to="Hub_fees.Converter_13" from="Demand_and_behaviour.demand_per_LSP"/>
 				<connect2 to="Hub_fees.Converter_13" from="Demand_and_behaviour.demand_per_LSP"/>
+				<connect to="Hub_fees.Converter_14" from="Economic_impacts.total_cost_of_operation"/>
+				<connect2 to="Hub_fees.Converter_14" from="Economic_impacts.total_cost_of_operation"/>
 				<connect to="Hub_fees.Converter_6" from="Economic_impacts.hub_total_cost"/>
 				<connect2 to="Hub_fees.Converter_6" from="Economic_impacts.hub_total_cost"/>
 				<connect to="Hub_fees.Converter_9" from=".DEMAND_PER_RECEIVER"/>
@@ -603,7 +635,7 @@
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="5" isee:page_rows="4" isee:scroll_x="2727.14" isee:scroll_y="830.714" zoom="140" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="5" isee:page_rows="5" isee:scroll_x="2786" isee:scroll_y="794" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="black" background="white" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -880,160 +912,572 @@
 					<from>COST_PER_HUB_VEHICLE</from>
 					<to>Economic_impacts</to>
 				</connector>
-				<stacked_container uid="54" x="1252" y="1128">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+				<stacked_container uid="54" x="483.667" y="1138" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="total system cost" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Economic_impacts.total_cost_of_operation"/>
+							<entity name="Hub_fees.total_system_cost"/>
 						</plot>
+						<isee:confidence_intervals include_mean="false">
+							<isee:confidence_interval>0.5</isee:confidence_interval>
+							<isee:confidence_interval>0.75</isee:confidence_interval>
+							<isee:confidence_interval>1</isee:confidence_interval>
+						</isee:confidence_intervals>
 					</graph>
 				</stacked_container>
-				<stacked_container uid="55" x="1617" y="1128">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+				<stacked_container uid="55" x="483.667" y="1406.33" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="demand through the hub" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Demand_and_behaviour.demand_through_the_hub"/>
 						</plot>
+						<isee:confidence_intervals include_mean="false">
+							<isee:confidence_interval>0.5</isee:confidence_interval>
+							<isee:confidence_interval>0.75</isee:confidence_interval>
+							<isee:confidence_interval>1</isee:confidence_interval>
+						</isee:confidence_intervals>
 					</graph>
 				</stacked_container>
-				<stacked_container uid="56" x="1256" y="1403">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Demand_and_behaviour.LSP_Adopters[SUM]"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="57" x="1617" y="1403">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Demand_and_behaviour.Receivers_Adopters[SUM]"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="58" x="2050" y="1128">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Economic_impacts.adjusted_monetary_value[Small]"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="59" x="2050" y="1387">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Economic_impacts.adjusted_monetary_value[Medium]"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="60" x="2053" y="1647">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Economic_impacts.adjusted_monetary_value[Large]"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="61" x="2409" y="1128">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Demand_and_behaviour.LSP_Adopters[Small]"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="62" x="2409" y="1391">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Demand_and_behaviour.LSP_Adopters[Medium]"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="63" x="2415" y="1652">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Demand_and_behaviour.LSP_Adopters[Large]"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="64" x="2792" y="1128">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Demand_and_behaviour.Receivers_Adopters[Small]"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="65" x="2795" y="1391">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Demand_and_behaviour.Receivers_Adopters[Medium]"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="66" x="2800" y="1660">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Demand_and_behaviour.Receivers_Adopters[Large]"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="67" x="3155.71" y="1128">
-					<graph width="350" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Hub_fees.revenue"/>
-						</plot>
-						<plot color="red" pen_style="dot_dashed" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
-							<entity name="Economic_impacts.hub_total_cost"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="68" x="3532.14" y="1128">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+				<stacked_container uid="58" x="1881" y="933" width="300" height="300">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="300" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="a) Adopter and non adopter cost for small LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="LSP adopter cost - LSP only" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Small]"/>
+							<isee:data name="LSP only"/>
+							<scale min="4000" max="7000"/>
 						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="69" x="3891.14" y="1128">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+						<plot color="#6290C3" pen_style="dashed" title="LSP non adopter cost - LSP only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Small]"/>
+							<isee:data name="LSP only"/>
+						</plot>
+						<plot color="#38B389" title="LSP adopter cost - Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Small]"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="LSP adopter cost - Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Small]"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+						<plot color="#FC8965" pen_style="dashed" title="LSP non adopter cost - Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="4" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Small]"/>
+							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
-				<stacked_container uid="70" x="3531.85" y="1385.71">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Economic_impacts.cost_per_LSP_adopters[Medium]"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="71" x="3891.14" y="1385.71">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Medium]"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="72" x="3529.57" y="1647">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Economic_impacts.cost_per_LSP_adopters[Large]"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="73" x="3888.86" y="1647">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
-						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Large]"/>
-						</plot>
-					</graph>
-				</stacked_container>
-				<stacked_container uid="74" x="1259.29" y="1670">
-					<graph width="350" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+				<stacked_container uid="74" x="791.693" y="1138" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="total km in area" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Operational_impacts.total_km_in_area"/>
 						</plot>
+						<isee:confidence_intervals include_mean="false">
+							<isee:confidence_interval>0.5</isee:confidence_interval>
+							<isee:confidence_interval>0.75</isee:confidence_interval>
+							<isee:confidence_interval>1</isee:confidence_interval>
+						</isee:confidence_intervals>
 					</graph>
 				</stacked_container>
-				<stacked_container uid="75" x="1617" y="1670">
-					<graph width="350" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+				<stacked_container uid="76" x="791.693" y="1406.33" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="total LSP adopters" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Operational_impacts.hub_vehicle"/>
+							<entity name="Demand_and_behaviour.total_LSP_adopters"/>
+						</plot>
+						<isee:confidence_intervals include_mean="false">
+							<isee:confidence_interval>0.5</isee:confidence_interval>
+							<isee:confidence_interval>0.75</isee:confidence_interval>
+							<isee:confidence_interval>1</isee:confidence_interval>
+						</isee:confidence_intervals>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="77" x="483.667" y="1670" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="total receivers adopters" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Demand_and_behaviour.total_receivers_adopters"/>
+						</plot>
+						<isee:confidence_intervals include_mean="false">
+							<isee:confidence_interval>0.5</isee:confidence_interval>
+							<isee:confidence_interval>0.75</isee:confidence_interval>
+							<isee:confidence_interval>1</isee:confidence_interval>
+						</isee:confidence_intervals>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="78" x="1099.69" y="1406.33" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Hub Fee per Package" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Hub_fees.Hub_Fee_per_Package"/>
+							<scale max="50"/>
+						</plot>
+						<isee:confidence_intervals include_mean="false">
+							<isee:confidence_interval>0.5</isee:confidence_interval>
+							<isee:confidence_interval>0.75</isee:confidence_interval>
+							<isee:confidence_interval>1</isee:confidence_interval>
+						</isee:confidence_intervals>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="79" x="1099.69" y="1138" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="total vehicle in area" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Operational_impacts.total_vehicle_in_the_area"/>
+						</plot>
+						<isee:confidence_intervals include_mean="false">
+							<isee:confidence_interval>0.5</isee:confidence_interval>
+							<isee:confidence_interval>0.75</isee:confidence_interval>
+							<isee:confidence_interval>1</isee:confidence_interval>
+						</isee:confidence_intervals>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="80" x="791.693" y="1670" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="revenue" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Hub_fees.revenue"/>
+						</plot>
+						<isee:confidence_intervals include_mean="false">
+							<isee:confidence_interval>0.5</isee:confidence_interval>
+							<isee:confidence_interval>0.75</isee:confidence_interval>
+							<isee:confidence_interval>1</isee:confidence_interval>
+						</isee:confidence_intervals>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="87" x="1099.69" y="1666.67" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="LSP Adopter [Medium]" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Demand_and_behaviour.LSP_Adopters[Medium]"/>
+						</plot>
+						<isee:confidence_intervals include_mean="false">
+							<isee:confidence_interval>0.5</isee:confidence_interval>
+							<isee:confidence_interval>0.75</isee:confidence_interval>
+							<isee:confidence_interval>1</isee:confidence_interval>
+						</isee:confidence_intervals>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="88" x="2192" y="933" width="300" height="300">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="300" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="b) Adopter and non adopter cost for medium LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="LSP adopter cost - LSP only" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Medium]"/>
+							<isee:data name="LSP only"/>
+							<scale max="70000"/>
+						</plot>
+						<plot color="#6290C3" pen_style="dashed" title="LSP non adopter cost - LSP only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Medium]"/>
+							<isee:data name="LSP only"/>
+						</plot>
+						<plot color="#38B389" title="LSP adopter cost - Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Medium]"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="LSP adopter cost - Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Medium]"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+						<plot color="#FC8965" pen_style="dashed" title="LSP non adopter cost - Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="4" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Medium]"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="89" x="2503" y="933" width="300" height="300">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="300" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="c) Adopter and non adopter cost for large LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="LSP adopter cost - LSP only" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Large]"/>
+							<isee:data name="LSP only"/>
+							<scale max="300000"/>
+						</plot>
+						<plot color="#6290C3" pen_style="dashed" title="LSP non adopter cost - LSP only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Large]"/>
+							<isee:data name="LSP only"/>
+						</plot>
+						<plot color="#38B389" title="LSP adopter cost - Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Large]"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="LSP adopter cost - Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Large]"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+						<plot color="#FC8965" pen_style="dashed" title="LSP non adopter cost - Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="4" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Large]"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="90" x="1882" y="1242" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="d) Small LSP adopters" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Demand_and_behaviour.LSP_Adopters[Small]"/>
+							<isee:data name="LSP only"/>
+						</plot>
+						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Demand_and_behaviour.LSP_Adopters[Small]"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Demand_and_behaviour.LSP_Adopters[Small]"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="91" x="2193" y="1242" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="e) Medium LSP adopters" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Demand_and_behaviour.LSP_Adopters[Medium]"/>
+							<isee:data name="LSP only"/>
+						</plot>
+						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Demand_and_behaviour.LSP_Adopters[Medium]"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Demand_and_behaviour.LSP_Adopters[Medium]"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="92" x="2503" y="1242" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="f) Large LSP adopters" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Demand_and_behaviour.LSP_Adopters[Large]"/>
+							<isee:data name="LSP only"/>
+						</plot>
+						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Demand_and_behaviour.LSP_Adopters[Large]"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Demand_and_behaviour.LSP_Adopters[Large]"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="93" x="1882" y="1498" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="g) Small receiver adopters" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#FF0066" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Demand_and_behaviour.Receivers_Adopters[Small]"/>
+							<isee:data name="Receiver only"/>
+							<scale max="200"/>
+						</plot>
+						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Demand_and_behaviour.Receivers_Adopters[Small]"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Demand_and_behaviour.Receivers_Adopters[Small]"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="96" x="2193" y="1498" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="h) Medium receiver adopters" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#FF0066" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Demand_and_behaviour.Receivers_Adopters[Medium]"/>
+							<isee:data name="Receiver only"/>
+						</plot>
+						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Demand_and_behaviour.Receivers_Adopters[Medium]"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Demand_and_behaviour.Receivers_Adopters[Medium]"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="97" x="2503" y="1498" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="i) Large receiver adopters" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#FF0066" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Demand_and_behaviour.Receivers_Adopters[Large]"/>
+							<isee:data name="Receiver only"/>
+						</plot>
+						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Demand_and_behaviour.Receivers_Adopters[Large]"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Demand_and_behaviour.Receivers_Adopters[Large]"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="98" x="1882" y="1756" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="j) Fee for small receivers" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#FF0066" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Hub_fees.receivers_fee[Small]"/>
+							<isee:data name="Receiver only"/>
+						</plot>
+						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Hub_fees.receivers_fee[Small]"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Hub_fees.receivers_fee[Small]"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="99" x="2192" y="1759" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="k) Fee for medium receivers" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#FF0066" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Hub_fees.receivers_fee[Medium]"/>
+							<isee:data name="Receiver only"/>
+						</plot>
+						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Hub_fees.receivers_fee[Medium]"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Hub_fees.receivers_fee[Medium]"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="100" x="2503" y="1756" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="l) Fee for large receivers" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#FF0066" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Hub_fees.receivers_fee[Large]"/>
+							<isee:data name="Receiver only"/>
+						</plot>
+						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Hub_fees.receivers_fee[Large]"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Hub_fees.receivers_fee[Large]"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="101" x="2948.75" y="988.75" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="a) CO2 emissions" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Operational_impacts.CO2_emissions"/>
+							<isee:data name="LSP only"/>
+						</plot>
+						<plot color="#ED217C" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Operational_impacts.CO2_emissions"/>
+							<isee:data name="Receiver only"/>
+						</plot>
+						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Operational_impacts.CO2_emissions"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
+							<entity name="Operational_impacts.CO2_emissions"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="102" x="3252.5" y="988.75" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="b) Total km travelled in the area" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Operational_impacts.total_km_in_area"/>
+							<isee:data name="LSP only"/>
+						</plot>
+						<plot color="#ED217C" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Operational_impacts.total_km_in_area"/>
+							<isee:data name="Receiver only"/>
+						</plot>
+						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Operational_impacts.total_km_in_area"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
+							<entity name="Operational_impacts.total_km_in_area"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="103" x="3552.5" y="988.75" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="c) Total vehicles in the area" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Operational_impacts.total_vehicle_in_the_area"/>
+							<isee:data name="LSP only"/>
+						</plot>
+						<plot color="#ED217C" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Operational_impacts.total_vehicle_in_the_area"/>
+							<isee:data name="Receiver only"/>
+						</plot>
+						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Operational_impacts.total_vehicle_in_the_area"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
+							<entity name="Operational_impacts.total_vehicle_in_the_area"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="104" x="2948.75" y="1245" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="d) Total operational cost" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Economic_impacts.total_cost_of_operation"/>
+							<isee:data name="LSP only"/>
+							<scale min="1000000"/>
+						</plot>
+						<plot color="#ED217C" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Economic_impacts.total_cost_of_operation"/>
+							<isee:data name="Receiver only"/>
+						</plot>
+						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Economic_impacts.total_cost_of_operation"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
+							<entity name="Economic_impacts.total_cost_of_operation"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="105" x="3255.83" y="1245" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="e) Total system cost" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Hub_fees.total_system_cost"/>
+							<isee:data name="LSP only"/>
+							<scale min="1000000"/>
+						</plot>
+						<plot color="#ED217C" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Hub_fees.total_system_cost"/>
+							<isee:data name="Receiver only"/>
+						</plot>
+						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Hub_fees.total_system_cost"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
+							<entity name="Hub_fees.total_system_cost"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="106" x="3552.5" y="1245" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="f) Hub revenue and cost" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="LSP only - revenue: solid, cost: dashed" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Hub_fees.revenue"/>
+							<isee:data name="LSP only"/>
+						</plot>
+						<plot color="#ED217C" title="Receiver only - revenue: solid, cost: dashed" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Hub_fees.revenue"/>
+							<isee:data name="Receiver only"/>
+						</plot>
+						<plot color="#38B389" title="Static cost - revenue: solid, cost: dashed" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
+							<entity name="Hub_fees.revenue"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" title="Dynamic cost - revenue: solid, cost: dashed" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
+							<entity name="Hub_fees.revenue"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+						<plot color="#6290C3" pen_style="dashed" isee:include_in_legend="false" isee:keep_zero_visible="true" pen_width="1" index="4" show_y_axis="true">
+							<entity name="Economic_impacts.hub_total_cost"/>
+							<isee:data name="LSP only"/>
+						</plot>
+						<plot color="#ED217C" pen_style="dashed" isee:include_in_legend="false" isee:keep_zero_visible="true" pen_width="1" index="5" show_y_axis="true">
+							<entity name="Economic_impacts.hub_total_cost"/>
+							<isee:data name="Receiver only"/>
+						</plot>
+						<plot color="#38B389" pen_style="dashed" isee:include_in_legend="false" isee:keep_zero_visible="true" pen_width="1" index="6" show_y_axis="true">
+							<entity name="Economic_impacts.hub_total_cost"/>
+							<isee:data name="Static cost"/>
+						</plot>
+						<plot color="#FC8965" pen_style="dotted" isee:include_in_legend="false" isee:keep_zero_visible="true" pen_width="1" index="7" show_y_axis="true">
+							<entity name="Economic_impacts.hub_total_cost"/>
+							<isee:data name="Dynamic cost"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="107" x="1870.67" y="2214.33" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="a) Adopter and non adopter cost for small LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="LSP adopter cost" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Small]"/>
+							<isee:data name="LSP only EZ3"/>
+							<scale min="4000" max="8000"/>
+						</plot>
+						<plot color="#6290C3" pen_style="dashed" title="LSP non adopter cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Small]"/>
+							<isee:data name="LSP only EZ3"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="108" x="2181.67" y="2214.33" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="b) Adopter and non adopter cost for medium LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="LSP adopter cost" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Medium]"/>
+							<isee:data name="LSP only EZ3"/>
+							<scale max="70000"/>
+						</plot>
+						<plot color="#6290C3" pen_style="dashed" title="LSP non adopter cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Medium]"/>
+							<isee:data name="LSP only EZ3"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="109" x="2492.67" y="2214.33" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="c) Adopter and non adopter cost for large LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="LSP adopter cost" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Large]"/>
+							<isee:data name="LSP only EZ3"/>
+							<scale max="300000"/>
+						</plot>
+						<plot color="#6290C3" pen_style="dashed" title="LSP non adopter cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Large]"/>
+							<isee:data name="LSP only EZ3"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="110" x="1887.67" y="2512.83" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="a) Adopter and non adopter cost for small LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#FC8965" title="LSP adopter cost" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Small]"/>
+							<isee:data name="Dynamic cost EZ3"/>
+							<scale min="4000" max="8000"/>
+						</plot>
+						<plot color="#FC8965" pen_style="dashed" title="LSP non adopter cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Small]"/>
+							<isee:data name="Dynamic cost EZ3"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="111" x="2198.67" y="2512.83" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="b) Adopter and non adopter cost for medium LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#FC8965" title="LSP adopter cost" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Medium]"/>
+							<isee:data name="Dynamic cost EZ3"/>
+							<scale max="70000"/>
+						</plot>
+						<plot color="#FC8965" pen_style="dashed" title="LSP non adopter cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Medium]"/>
+							<isee:data name="Dynamic cost EZ3"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="112" x="2509.67" y="2512.83" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="c) Adopter and non adopter cost for large LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#FC8965" title="LSP adopter cost" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_adopters[Large]"/>
+							<isee:data name="Dynamic cost EZ3"/>
+							<scale max="300000"/>
+						</plot>
+						<plot color="#FC8965" pen_style="dashed" title="LSP non adopter cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Large]"/>
+							<isee:data name="Dynamic cost EZ3"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="113" x="2845.5" y="2214.33" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Hub revenue and cost" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#6290C3" title="Revenue" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Hub_fees.revenue"/>
+							<isee:data name="LSP only EZ3"/>
+						</plot>
+						<plot color="#6290C3" pen_style="dashed" title="Cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Economic_impacts.hub_total_cost"/>
+							<isee:data name="LSP only EZ3"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stacked_container uid="114" x="2845.5" y="2512.83" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Hub revenue and cost" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="#FC8965" title="Revenue" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Hub_fees.revenue"/>
+							<isee:data name="Dynamic cost EZ3"/>
+						</plot>
+						<plot color="#FC8965" pen_style="dashed" title="Cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Economic_impacts.hub_total_cost"/>
+							<isee:data name="Dynamic cost EZ3"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1342,7 +1786,7 @@ Converter_11*adopters_with_non_adopters_contacts+LSP_adoption_from_advertisement
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="2" isee:page_rows="3" isee:scroll_y="3.75" zoom="80" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="2" isee:page_rows="3" isee:scroll_x="3.75" isee:scroll_y="8.75" zoom="80" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="black" background="white" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -1962,7 +2406,7 @@ hub_total_cost</eqn>
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="2" isee:page_rows="2" isee:scroll_y="3" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="2" isee:page_rows="2" isee:scroll_x="253" isee:scroll_y="26" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="black" background="white" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -2050,7 +2494,7 @@ hub_total_cost</eqn>
 					<from>cost_per_LSP_non_adopters</from>
 					<to>cost_per_package_per_LSP_non_adopter</to>
 				</connector>
-				<aux font_style="italic" font_weight="bold" x="397.834" y="100.261" name="Converter 21"/>
+				<aux font_style="italic" font_weight="bold" x="446.19" y="84.261" name="Converter 21"/>
 				<connector uid="56" angle="180">
 					<from>Converter_21</from>
 					<to>cost_per_package_per_LSP_non_adopter</to>
@@ -2060,7 +2504,7 @@ hub_total_cost</eqn>
 					<from>cost_per_LSP_adopters</from>
 					<to>cost_per_package_per_LSP_adopter</to>
 				</connector>
-				<connector uid="58" angle="28.3015">
+				<connector uid="58" angle="14.3938">
 					<from>Converter_21</from>
 					<to>cost_per_package_per_LSP_adopter</to>
 				</connector>
@@ -2338,6 +2782,13 @@ ELSE 0</eqn>
 				<eqn>0</eqn>
 				<units>LSP</units>
 			</stock>
+			<aux name="Converter 14" access="input">
+				<units>sek/month</units>
+			</aux>
+			<aux name="total system cost">
+				<eqn>revenue+Converter_14</eqn>
+				<units>sek/month</units>
+			</aux>
 		</variables>
 		<views>
 			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
@@ -2522,6 +2973,16 @@ ELSE 0</eqn>
 					<from>LSP_Adopters</from>
 					<to>revenue</to>
 				</connector>
+				<aux font_style="italic" font_weight="bold" x="79" y="231.5" name="Converter 14"/>
+				<aux x="185" y="331" name="total system cost"/>
+				<connector uid="29" angle="248.141">
+					<from>revenue</from>
+					<to>total_system_cost</to>
+				</connector>
+				<connector uid="30" angle="292.906">
+					<from>Converter_14</from>
+					<to>total_system_cost</to>
+				</connector>
 			</view>
 		</views>
 	</model>
@@ -2587,7 +3048,7 @@ ELSE 0</eqn>
 				<dimensions>
 					<dim name="LSP"/>
 				</dimensions>
-				<eqn>(Converter_14-demand_per_LSP_non_adopter_to_be_delivered_at_hub)/Converter_8</eqn>
+				<eqn>(Converter_14-demand_per_LSP_non_adopter_to_be_delivered_at_hub)/(Converter_8*PACKAGES_PER_STOP_BASE)</eqn>
 				<units>stop/LSP/month</units>
 			</aux>
 			<aux name="Converter 15" access="input">
@@ -2894,6 +3355,10 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 				<eqn>{Enter equation for use when not hooked up to other models}</eqn>
 				<units>dmnl</units>
 			</aux>
+			<aux name="PACKAGES PER STOP BASE">
+				<eqn>1</eqn>
+				<units>dmnl</units>
+			</aux>
 		</variables>
 		<views>
 			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
@@ -2941,7 +3406,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="4" isee:page_rows="3" isee:scroll_x="682.5" zoom="80" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="4" isee:page_rows="3" zoom="80" isee:popup_graphs_are_comparative="false" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="black" background="white" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -2985,7 +3450,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 				<aux font_style="italic" font_weight="bold" x="1626.33" y="109.839" name="Converter 3"/>
 				<aux font_style="italic" font_weight="bold" x="1961.6" y="301.339" name="Converter 5"/>
 				<aux font_style="italic" font_weight="bold" x="1815.5" y="192.339" name="Converter 7"/>
-				<aux font_style="italic" font_weight="bold" label_side="bottom" x="652.75" y="789.089" name="Converter 8"/>
+				<aux font_style="italic" font_weight="bold" label_side="bottom" x="714.75" y="761.612" name="Converter 8"/>
 				<aux font_style="italic" font_weight="bold" x="1268.57" y="731.714" name="Converter 9"/>
 				<aux font_style="italic" font_weight="bold" x="2039.8" y="430.738" width="18" height="18" name="Converter 10"/>
 				<aux font_style="italic" font_weight="bold" x="1297" y="570.988" name="Converter 11"/>
@@ -3426,6 +3891,11 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 					<from>percentage_of_receivers_adopters</from>
 					<to>total_vehicle_in_the_area</to>
 				</connector>
+				<aux x="741.75" y="828.75" name="PACKAGES PER STOP BASE"/>
+				<connector uid="164" angle="50.3073">
+					<from>PACKAGES_PER_STOP_BASE</from>
+					<to>number_of_stops_per_LSP_non_adopter</to>
+				</connector>
 				<alias color="black" background="white" font_style="italic" label_side="top" uid="29" x="1077" y="704.714" width="18" height="18">
 					<shape type="circle" radius="18"/>
 					<of>hub_number_of_stops</of>
@@ -3463,7 +3933,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 			<gf>
 				<yscale min="0" max="2"/>
 				<xpts>0,36,37,120</xpts>
-				<ypts>4600,4600,4600,4600</ypts>
+				<ypts>4600,4600,6367,6367</ypts>
 			</gf>
 		</isee:control>
 		<isee:control priority="imex" name="COST_PER_kWh" value="2"/>
@@ -3472,7 +3942,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 		<isee:control priority="imex" name="DEMAND_PER_RECEIVER[Large]" value="940"/>
 		<isee:control priority="imex" name="DEMAND_PER_RECEIVER[Medium]" value="230"/>
 		<isee:control priority="imex" name="DEMAND_PER_RECEIVER[Small]" value="30"/>
-		<isee:control priority="imex" name="DYNAMIC_COST_ON_OFF" value="1"/>
+		<isee:control priority="imex" name="DYNAMIC_COST_ON_OFF" value="0"/>
 		<isee:control priority="imex" name="Economic_impacts.adjusted_monetary_value[Large]" type="graphical">
 			<gf>
 				<yscale min="0" max="1"/>
@@ -3531,19 +4001,19 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 			<gf>
 				<yscale min="0" max="100"/>
 				<xpts>0,20,40,60,80,100,120</xpts>
-				<ypts>0,0.1,0.05,0.01,0,0,0</ypts>
+				<ypts>0,0,0,0,0,0,0</ypts>
 			</gf>
 		</isee:control>
-		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Large]" value="26320"/>
-		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Medium]" value="6440"/>
-		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Small]" value="840"/>
+		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Large]" value="24440"/>
+		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Medium]" value="5980"/>
+		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Small]" value="780"/>
 		<isee:control priority="imex" name="SHARE_OF_DEMAND_TO_DIFFERENT_LSP_SIZES[Large]" value="0.39"/>
 		<isee:control priority="imex" name="SHARE_OF_DEMAND_TO_DIFFERENT_LSP_SIZES[Medium]" value="0.53"/>
 		<isee:control priority="imex" name="SHARE_OF_DEMAND_TO_DIFFERENT_LSP_SIZES[Small]" value="0.08"/>
 		<isee:control priority="imex" name="SPEED_IN_AREA" value="15"/>
 		<isee:control priority="imex" name="SPEED_TO_AND_FROM_AREA" value="30"/>
 		<isee:control priority="imex" name="TIME_FOR_UNLOADING_TO_THE_HUB" value="0.01"/>
-		<isee:control priority="imex" name="TIME_OF_POLICY" value="200"/>
+		<isee:control priority="imex" name="TIME_OF_POLICY" value="36"/>
 		<isee:control priority="imex" name="TOURS_PER_MONTH[Large]" value="20"/>
 		<isee:control priority="imex" name="TOURS_PER_MONTH[Medium]" value="10"/>
 		<isee:control priority="imex" name="TOURS_PER_MONTH[Small]" value="5"/>
