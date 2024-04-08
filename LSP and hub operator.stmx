@@ -38,7 +38,7 @@
 	<data>
 		<import isee:overwrite="false" orientation="horizontal" resource="r../LSP and hub operator input.xlsx" type="Excel" worksheet="Sheet1"/>
 	</data>
-	<isee:sensi_specs_list active_index="1">
+	<isee:sensi_specs_list active_index="0">
 		<isee:sensi_specs name="Multivariate scenario 1" method="grid">
 			<isee:variable type="adhoc" name="DELIVERY_TIME_PER_PACKAGE">0.056,0.07,0.084</isee:variable>
 			<isee:variable type="adhoc" name="HUB_FIXED_COST">43840,54800,65760</isee:variable>
@@ -221,6 +221,8 @@
 				<connect2 to="Economic_impacts.COST_PER_HOUR" from="COST_PER_HOUR"/>
 				<connect to="Economic_impacts.COST_PER_HOUR_2" from=".COST_PER_HOUR"/>
 				<connect2 to="Economic_impacts.COST_PER_HOUR_2" from="COST_PER_HOUR"/>
+				<connect to="Economic_impacts.COST_PER_HOUR_3" from=".COST_PER_HOUR"/>
+				<connect2 to="Economic_impacts.COST_PER_HOUR_3" from="COST_PER_HOUR"/>
 				<connect to="Economic_impacts.COST_PER_LITER_OF_DIESEL" from=".COST_PER_LITER_OF_DIESEL"/>
 				<connect2 to="Economic_impacts.COST_PER_LITER_OF_DIESEL" from="COST_PER_LITER_OF_DIESEL"/>
 				<connect to="Economic_impacts.DYNAMIC_COST_ON_OFF" from=".DYNAMIC_COST_ON_OFF"/>
@@ -635,7 +637,7 @@
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="5" isee:page_rows="5" isee:scroll_x="107" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="826" page_height="579" isee:page_cols="5" isee:page_rows="5" isee:scroll_x="61.6667" isee:scroll_y="125.833" zoom="120" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="black" background="white" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -924,7 +926,7 @@
 						</isee:confidence_intervals>
 					</graph>
 				</stacked_container>
-				<stacked_container uid="55" x="483.667" y="1406.33" width="300" height="250">
+				<stacked_container uid="55" x="477.667" y="2051.67" width="300" height="250">
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="demand through the hub" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Demand_and_behaviour.demand_through_the_hub"/>
@@ -940,24 +942,19 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="300" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="a) Adopter and non adopter cost for small LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="LSP adopter cost - LSP only" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Small]"/>
-							<isee:data name="LSP only"/>
 							<scale min="4000" max="7000"/>
 						</plot>
 						<plot color="#6290C3" pen_style="dashed" title="LSP non adopter cost - LSP only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Small]"/>
-							<isee:data name="LSP only"/>
 						</plot>
 						<plot color="#38B389" title="LSP adopter cost - Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Small]"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="LSP adopter cost - Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Small]"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 						<plot color="#FC8965" pen_style="dashed" title="LSP non adopter cost - Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="4" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Small]"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1022,7 +1019,7 @@
 						</isee:confidence_intervals>
 					</graph>
 				</stacked_container>
-				<stacked_container uid="80" x="791.693" y="1670" width="300" height="250">
+				<stacked_container uid="80" x="780.026" y="2051.67" width="300" height="250">
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="revenue" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Hub_fees.revenue"/>
@@ -1034,10 +1031,10 @@
 						</isee:confidence_intervals>
 					</graph>
 				</stacked_container>
-				<stacked_container uid="87" x="1099.69" y="1666.67" width="300" height="250">
-					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="LSP Adopter [Medium]" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+				<stacked_container uid="87" x="1081.69" y="2051.67" width="300" height="250">
+					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" comparative="true" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="LSP Adopter [Small]" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
-							<entity name="Demand_and_behaviour.LSP_Adopters[Medium]"/>
+							<entity name="Demand_and_behaviour.LSP_Adopters[Small]"/>
 						</plot>
 						<isee:confidence_intervals include_mean="false">
 							<isee:confidence_interval>0.5</isee:confidence_interval>
@@ -1050,24 +1047,19 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="300" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="b) Adopter and non adopter cost for medium LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="LSP adopter cost - LSP only" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Medium]"/>
-							<isee:data name="LSP only"/>
 							<scale max="70000"/>
 						</plot>
 						<plot color="#6290C3" pen_style="dashed" title="LSP non adopter cost - LSP only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Medium]"/>
-							<isee:data name="LSP only"/>
 						</plot>
 						<plot color="#38B389" title="LSP adopter cost - Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Medium]"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="LSP adopter cost - Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Medium]"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 						<plot color="#FC8965" pen_style="dashed" title="LSP non adopter cost - Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="4" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Medium]"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1075,24 +1067,19 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="300" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="c) Adopter and non adopter cost for large LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="LSP adopter cost - LSP only" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Large]"/>
-							<isee:data name="LSP only"/>
 							<scale max="300000"/>
 						</plot>
 						<plot color="#6290C3" pen_style="dashed" title="LSP non adopter cost - LSP only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Large]"/>
-							<isee:data name="LSP only"/>
 						</plot>
 						<plot color="#38B389" title="LSP adopter cost - Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Large]"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="LSP adopter cost - Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Large]"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 						<plot color="#FC8965" pen_style="dashed" title="LSP non adopter cost - Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="4" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Large]"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1100,15 +1087,12 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="d) Small LSP adopters" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Demand_and_behaviour.LSP_Adopters[Small]"/>
-							<isee:data name="LSP only"/>
 						</plot>
 						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Demand_and_behaviour.LSP_Adopters[Small]"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Demand_and_behaviour.LSP_Adopters[Small]"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1116,15 +1100,12 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="e) Medium LSP adopters" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Demand_and_behaviour.LSP_Adopters[Medium]"/>
-							<isee:data name="LSP only"/>
 						</plot>
 						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Demand_and_behaviour.LSP_Adopters[Medium]"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Demand_and_behaviour.LSP_Adopters[Medium]"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1132,15 +1113,12 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="f) Large LSP adopters" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Demand_and_behaviour.LSP_Adopters[Large]"/>
-							<isee:data name="LSP only"/>
 						</plot>
 						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Demand_and_behaviour.LSP_Adopters[Large]"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Demand_and_behaviour.LSP_Adopters[Large]"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1148,16 +1126,13 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="g) Small receiver adopters" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#FF0066" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Demand_and_behaviour.Receivers_Adopters[Small]"/>
-							<isee:data name="Receiver only"/>
 							<scale max="200"/>
 						</plot>
 						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Demand_and_behaviour.Receivers_Adopters[Small]"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Demand_and_behaviour.Receivers_Adopters[Small]"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1165,15 +1140,12 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="h) Medium receiver adopters" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#FF0066" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Demand_and_behaviour.Receivers_Adopters[Medium]"/>
-							<isee:data name="Receiver only"/>
 						</plot>
 						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Demand_and_behaviour.Receivers_Adopters[Medium]"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Demand_and_behaviour.Receivers_Adopters[Medium]"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1181,15 +1153,12 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="i) Large receiver adopters" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#FF0066" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Demand_and_behaviour.Receivers_Adopters[Large]"/>
-							<isee:data name="Receiver only"/>
 						</plot>
 						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Demand_and_behaviour.Receivers_Adopters[Large]"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Demand_and_behaviour.Receivers_Adopters[Large]"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1197,15 +1166,12 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="j) Fee for small receivers" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#FF0066" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Hub_fees.receivers_fee[Small]"/>
-							<isee:data name="Receiver only"/>
 						</plot>
 						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Hub_fees.receivers_fee[Small]"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Hub_fees.receivers_fee[Small]"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1213,15 +1179,12 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="k) Fee for medium receivers" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#FF0066" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Hub_fees.receivers_fee[Medium]"/>
-							<isee:data name="Receiver only"/>
 						</plot>
 						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Hub_fees.receivers_fee[Medium]"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Hub_fees.receivers_fee[Medium]"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1229,15 +1192,12 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="l) Fee for large receivers" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#FF0066" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Hub_fees.receivers_fee[Large]"/>
-							<isee:data name="Receiver only"/>
 						</plot>
 						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Hub_fees.receivers_fee[Large]"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Hub_fees.receivers_fee[Large]"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1245,19 +1205,15 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="a) CO2 emissions" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Operational_impacts.CO2_emissions"/>
-							<isee:data name="LSP only"/>
 						</plot>
 						<plot color="#ED217C" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Operational_impacts.CO2_emissions"/>
-							<isee:data name="Receiver only"/>
 						</plot>
 						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Operational_impacts.CO2_emissions"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
 							<entity name="Operational_impacts.CO2_emissions"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1265,19 +1221,15 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="b) Total km travelled in the area" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Operational_impacts.total_km_in_area"/>
-							<isee:data name="LSP only"/>
 						</plot>
 						<plot color="#ED217C" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Operational_impacts.total_km_in_area"/>
-							<isee:data name="Receiver only"/>
 						</plot>
 						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Operational_impacts.total_km_in_area"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
 							<entity name="Operational_impacts.total_km_in_area"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1285,19 +1237,15 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="c) Total vehicles in the area" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Operational_impacts.total_vehicle_in_the_area"/>
-							<isee:data name="LSP only"/>
 						</plot>
 						<plot color="#ED217C" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Operational_impacts.total_vehicle_in_the_area"/>
-							<isee:data name="Receiver only"/>
 						</plot>
 						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Operational_impacts.total_vehicle_in_the_area"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
 							<entity name="Operational_impacts.total_vehicle_in_the_area"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1305,20 +1253,16 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="d) Total operational cost" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Economic_impacts.total_cost_of_operation"/>
-							<isee:data name="LSP only"/>
 							<scale min="1000000"/>
 						</plot>
 						<plot color="#ED217C" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Economic_impacts.total_cost_of_operation"/>
-							<isee:data name="Receiver only"/>
 						</plot>
 						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Economic_impacts.total_cost_of_operation"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
 							<entity name="Economic_impacts.total_cost_of_operation"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1326,20 +1270,16 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="e) Total system cost" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="LSP only" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Hub_fees.total_system_cost"/>
-							<isee:data name="LSP only"/>
 							<scale min="1000000"/>
 						</plot>
 						<plot color="#ED217C" title="Receiver only" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Hub_fees.total_system_cost"/>
-							<isee:data name="Receiver only"/>
 						</plot>
 						<plot color="#38B389" title="Static cost" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Hub_fees.total_system_cost"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="Dynamic cost" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
 							<entity name="Hub_fees.total_system_cost"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1347,35 +1287,27 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="f) Hub revenue and cost" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="LSP only - revenue: solid, cost: dashed" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Hub_fees.revenue"/>
-							<isee:data name="LSP only"/>
 						</plot>
 						<plot color="#ED217C" title="Receiver only - revenue: solid, cost: dashed" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Hub_fees.revenue"/>
-							<isee:data name="Receiver only"/>
 						</plot>
 						<plot color="#38B389" title="Static cost - revenue: solid, cost: dashed" isee:keep_zero_visible="true" pen_width="1" index="2" show_y_axis="true">
 							<entity name="Hub_fees.revenue"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" title="Dynamic cost - revenue: solid, cost: dashed" isee:keep_zero_visible="true" pen_width="1" index="3" show_y_axis="true">
 							<entity name="Hub_fees.revenue"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 						<plot color="#6290C3" pen_style="dashed" isee:include_in_legend="false" isee:keep_zero_visible="true" pen_width="1" index="4" show_y_axis="true">
 							<entity name="Economic_impacts.hub_total_cost"/>
-							<isee:data name="LSP only"/>
 						</plot>
 						<plot color="#ED217C" pen_style="dashed" isee:include_in_legend="false" isee:keep_zero_visible="true" pen_width="1" index="5" show_y_axis="true">
 							<entity name="Economic_impacts.hub_total_cost"/>
-							<isee:data name="Receiver only"/>
 						</plot>
 						<plot color="#38B389" pen_style="dashed" isee:include_in_legend="false" isee:keep_zero_visible="true" pen_width="1" index="6" show_y_axis="true">
 							<entity name="Economic_impacts.hub_total_cost"/>
-							<isee:data name="Static cost"/>
 						</plot>
 						<plot color="#FC8965" pen_style="dotted" isee:include_in_legend="false" isee:keep_zero_visible="true" pen_width="1" index="7" show_y_axis="true">
 							<entity name="Economic_impacts.hub_total_cost"/>
-							<isee:data name="Dynamic cost"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1383,12 +1315,10 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="a) Adopter and non adopter cost for small LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="LSP adopter cost" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Small]"/>
-							<isee:data name="LSP only EZ3"/>
 							<scale min="4000" max="8000"/>
 						</plot>
 						<plot color="#6290C3" pen_style="dashed" title="LSP non adopter cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Small]"/>
-							<isee:data name="LSP only EZ3"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1396,12 +1326,10 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="b) Adopter and non adopter cost for medium LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="LSP adopter cost" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Medium]"/>
-							<isee:data name="LSP only EZ3"/>
 							<scale max="70000"/>
 						</plot>
 						<plot color="#6290C3" pen_style="dashed" title="LSP non adopter cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Medium]"/>
-							<isee:data name="LSP only EZ3"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1409,12 +1337,10 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="c) Adopter and non adopter cost for large LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="LSP adopter cost" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Large]"/>
-							<isee:data name="LSP only EZ3"/>
 							<scale max="300000"/>
 						</plot>
 						<plot color="#6290C3" pen_style="dashed" title="LSP non adopter cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Large]"/>
-							<isee:data name="LSP only EZ3"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1422,12 +1348,10 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="a) Adopter and non adopter cost for small LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#FC8965" title="LSP adopter cost" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Small]"/>
-							<isee:data name="Dynamic cost EZ3"/>
 							<scale min="4000" max="8000"/>
 						</plot>
 						<plot color="#FC8965" pen_style="dashed" title="LSP non adopter cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Small]"/>
-							<isee:data name="Dynamic cost EZ3"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1435,12 +1359,10 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="b) Adopter and non adopter cost for medium LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#FC8965" title="LSP adopter cost" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Medium]"/>
-							<isee:data name="Dynamic cost EZ3"/>
 							<scale max="70000"/>
 						</plot>
 						<plot color="#FC8965" pen_style="dashed" title="LSP non adopter cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Medium]"/>
-							<isee:data name="Dynamic cost EZ3"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1448,12 +1370,10 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="c) Adopter and non adopter cost for large LSPs" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#FC8965" title="LSP adopter cost" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_adopters[Large]"/>
-							<isee:data name="Dynamic cost EZ3"/>
 							<scale max="300000"/>
 						</plot>
 						<plot color="#FC8965" pen_style="dashed" title="LSP non adopter cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Economic_impacts.cost_per_LSP_non_adopters[Large]"/>
-							<isee:data name="Dynamic cost EZ3"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1461,11 +1381,9 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Hub revenue and cost" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#6290C3" title="Revenue" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Hub_fees.revenue"/>
-							<isee:data name="LSP only EZ3"/>
 						</plot>
 						<plot color="#6290C3" pen_style="dashed" title="Cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Economic_impacts.hub_total_cost"/>
-							<isee:data name="LSP only EZ3"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1473,11 +1391,9 @@
 					<graph font_family="Georgia" isee:transparent="true" isee:hide_border="true" axis_title_font_family="Georgia" axis_label_font_family="Georgia" width="300" height="250" type="time_series" show_grid="false" isee:tick_type="none" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" title="Hub revenue and cost" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="#FC8965" title="Revenue" isee:keep_zero_visible="false" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Hub_fees.revenue"/>
-							<isee:data name="Dynamic cost EZ3"/>
 						</plot>
 						<plot color="#FC8965" pen_style="dashed" title="Cost" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="Economic_impacts.hub_total_cost"/>
-							<isee:data name="Dynamic cost EZ3"/>
 						</plot>
 					</graph>
 				</stacked_container>
@@ -1511,35 +1427,35 @@ Lorem ipsum dolor sit amet</text_box>
 						<isee:model_view x="0" y="0" width="1066" height="600" isee:locked="true" zoom="1.75" center_x="304.571" center_y="815.848" locked_view="true" transparent="true" use_visible_list="true" show_ltm_table="false">
 							<model name="Demand_and_behaviour"/>
 							<isee:visible_list>
-								<item uid="Demand_and_behaviour.31"/>
-								<entity name="CONTACT_RATE_1"/>
-								<item uid="Demand_and_behaviour.85"/>
-								<item uid="Demand_and_behaviour.84"/>
-								<item uid="Demand_and_behaviour.35"/>
-								<entity name="ADJUSTMENT_TIME"/>
-								<item uid="Demand_and_behaviour.24"/>
-								<item uid="Demand_and_behaviour.37"/>
-								<item uid="Demand_and_behaviour.32"/>
-								<item uid="Demand_and_behaviour.36"/>
-								<item uid="Demand_and_behaviour.58"/>
-								<item uid="Demand_and_behaviour.26"/>
-								<item uid="Demand_and_behaviour.18"/>
-								<entity name="Converter_11"/>
-								<entity name="adopters_prevalence"/>
-								<item uid="Demand_and_behaviour.28"/>
-								<item uid="Demand_and_behaviour.20"/>
-								<entity name="total_LSP_adopters"/>
-								<entity name="LSP_adoption"/>
-								<entity name="adopters_with_non_adopters_contacts"/>
-								<item uid="Demand_and_behaviour.19"/>
-								<entity name="Converter_5"/>
-								<entity name="Converter_4"/>
-								<entity name="LSP_Adopters"/>
-								<entity name="LSP_Potential_Adopters"/>
 								<item uid="Demand_and_behaviour.27"/>
-								<entity name="potential_adopters_contacts_with_anyone"/>
-								<entity name="LSP_adoption_from_advertisement"/>
+								<item uid="Demand_and_behaviour.35"/>
+								<item uid="Demand_and_behaviour.32"/>
+								<item uid="Demand_and_behaviour.85"/>
+								<entity name="LSP_Potential_Adopters"/>
+								<entity name="Converter_4"/>
+								<entity name="ADJUSTMENT_TIME"/>
+								<entity name="CONTACT_RATE_1"/>
+								<item uid="Demand_and_behaviour.18"/>
+								<item uid="Demand_and_behaviour.31"/>
+								<item uid="Demand_and_behaviour.58"/>
+								<entity name="LSP_adoption"/>
 								<item uid="Demand_and_behaviour.15"/>
+								<entity name="total_LSP_adopters"/>
+								<item uid="Demand_and_behaviour.24"/>
+								<entity name="Converter_11"/>
+								<item uid="Demand_and_behaviour.19"/>
+								<item uid="Demand_and_behaviour.84"/>
+								<entity name="Converter_5"/>
+								<item uid="Demand_and_behaviour.26"/>
+								<entity name="potential_adopters_contacts_with_anyone"/>
+								<item uid="Demand_and_behaviour.28"/>
+								<entity name="LSP_Adopters"/>
+								<entity name="adopters_with_non_adopters_contacts"/>
+								<entity name="LSP_adoption_from_advertisement"/>
+								<entity name="adopters_prevalence"/>
+								<item uid="Demand_and_behaviour.20"/>
+								<item uid="Demand_and_behaviour.37"/>
+								<item uid="Demand_and_behaviour.36"/>
 							</isee:visible_list>
 							<isee:highlight_list/>
 						</isee:model_view>
@@ -1549,37 +1465,37 @@ Lorem ipsum dolor sit amet</text_box>
 						<isee:model_view x="0" y="0" width="1066" height="600" isee:locked="true" zoom="1.8" center_x="736.597" center_y="325.778" locked_view="true" transparent="true" use_visible_list="true" show_ltm_table="false">
 							<model name="Demand_and_behaviour"/>
 							<isee:visible_list>
-								<item uid="Demand_and_behaviour.81"/>
-								<entity name="Converter_10"/>
-								<entity name="Converter_6"/>
-								<item uid="Demand_and_behaviour.57"/>
-								<entity name="total_receivers_adopters"/>
-								<item uid="Demand_and_behaviour.11"/>
-								<item uid="Demand_and_behaviour.10"/>
-								<item uid="Demand_and_behaviour.9"/>
-								<entity name="receivers_adoption_from_advertisement"/>
-								<item uid="Demand_and_behaviour.4"/>
-								<entity name="receiver_adopters_prevalence"/>
-								<item uid="Demand_and_behaviour.6"/>
-								<entity name="receiver_adopters_with_non_adopters_contacts"/>
-								<item uid="Demand_and_behaviour.2"/>
-								<entity name="receiver_potential_adopters_contact_with_anyone"/>
 								<item uid="Demand_and_behaviour.13"/>
-								<item uid="Demand_and_behaviour.12"/>
-								<item uid="Demand_and_behaviour.5"/>
-								<entity name="receivers_adoption"/>
-								<item uid="Demand_and_behaviour.83"/>
-								<item uid="Demand_and_behaviour.7"/>
-								<item uid="Demand_and_behaviour.1"/>
-								<entity name="adoption_rate_receivers"/>
-								<entity name="Converter_7"/>
 								<item uid="Demand_and_behaviour.3"/>
-								<entity name="Converter_2"/>
-								<entity name="Converter_1"/>
-								<item uid="Demand_and_behaviour.8"/>
+								<entity name="adoption_rate_receivers"/>
+								<item uid="Demand_and_behaviour.10"/>
+								<entity name="receiver_adopters_prevalence"/>
+								<entity name="receiver_potential_adopters_contact_with_anyone"/>
+								<entity name="receivers_adoption"/>
+								<item uid="Demand_and_behaviour.5"/>
+								<entity name="Converter_7"/>
 								<entity name="Converter_8"/>
+								<item uid="Demand_and_behaviour.7"/>
+								<entity name="Converter_10"/>
+								<item uid="Demand_and_behaviour.6"/>
+								<entity name="Converter_2"/>
+								<item uid="Demand_and_behaviour.2"/>
+								<item uid="Demand_and_behaviour.1"/>
+								<item uid="Demand_and_behaviour.83"/>
+								<item uid="Demand_and_behaviour.11"/>
+								<item uid="Demand_and_behaviour.8"/>
+								<item uid="Demand_and_behaviour.12"/>
+								<entity name="receiver_adopters_with_non_adopters_contacts"/>
 								<entity name="Receivers_Potential_Adopters"/>
+								<item uid="Demand_and_behaviour.57"/>
+								<entity name="Converter_6"/>
+								<entity name="receivers_adoption_from_advertisement"/>
 								<entity name="Receivers_Adopters"/>
+								<item uid="Demand_and_behaviour.9"/>
+								<entity name="Converter_1"/>
+								<entity name="total_receivers_adopters"/>
+								<item uid="Demand_and_behaviour.4"/>
+								<item uid="Demand_and_behaviour.81"/>
 							</isee:visible_list>
 							<isee:highlight_list/>
 						</isee:model_view>
@@ -1890,7 +1806,7 @@ Converter_11*adopters_with_non_adopters_contacts+LSP_adoption_from_advertisement
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="2" isee:page_rows="3" isee:scroll_x="836.667" isee:scroll_y="413.333" zoom="180" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="826" page_height="579" isee:page_cols="2" isee:page_rows="3" isee:scroll_x="295" isee:scroll_y="395" zoom="160" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="black" background="white" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -2017,7 +1933,7 @@ Converter_11*adopters_with_non_adopters_contacts+LSP_adoption_from_advertisement
 					<to>potential_adopters_contacts_with_anyone</to>
 				</connector>
 				<aux font_family="Georgia" label_side="bottom" x="421.444" y="902.264" name="adopters with\nnon adopters\ncontacts"/>
-				<aux font_family="Georgia" x="509.056" y="874.889" name="adopters\nprevalence"/>
+				<aux font_family="Georgia" x="500.056" y="865.889" width="18" height="18" name="adopters\nprevalence"/>
 				<connector uid="18" angle="225.309">
 					<from>adopters_prevalence</from>
 					<to>adopters_with_non_adopters_contacts</to>
@@ -2030,7 +1946,7 @@ Converter_11*adopters_with_non_adopters_contacts+LSP_adoption_from_advertisement
 					<from>adopters_with_non_adopters_contacts</from>
 					<to>LSP_adoption</to>
 				</connector>
-				<stock font_family="Georgia" label_side="bottom" x="390.264" y="740.389" width="45" height="35" name="LSP Adopters"/>
+				<stock font_family="Georgia" label_side="bottom" x="412.764" y="757.889" name="LSP Adopters"/>
 				<aux font_family="Georgia" x="223.431" y="856.14" name="LSP adoption from\nadvertisement"/>
 				<connector uid="24" angle="288.6">
 					<from>LSP_Potential_Adopters</from>
@@ -2057,11 +1973,11 @@ Converter_11*adopters_with_non_adopters_contacts+LSP_adoption_from_advertisement
 					<isee:entities>
 						<item uid="20"/>
 						<item uid="18"/>
+						<item uid="36"/>
 						<entity name="LSP_adoption"/>
 						<entity name="LSP_Adopters"/>
 						<entity name="adopters_with_non_adopters_contacts"/>
 						<entity name="adopters_prevalence"/>
-						<item uid="36"/>
 					</isee:entities>
 				</isee:loop_indicator>
 				<connector uid="32" angle="154.958">
@@ -2206,22 +2122,22 @@ Converter_11*adopters_with_non_adopters_contacts+LSP_adoption_from_advertisement
 				</connector>
 				<isee:loop_indicator font_family="Georgia" font_size="10pt" text="Ad adoption" orientation="counter_clockwise" uid="86" x="667.973" y="315.681" width="51.4165" height="68.459">
 					<isee:entities>
+						<item uid="11"/>
+						<item uid="9"/>
 						<entity name="Receivers_Potential_Adopters"/>
 						<entity name="receivers_adoption"/>
 						<entity name="receivers_adoption_from_advertisement"/>
-						<item uid="11"/>
-						<item uid="9"/>
 					</isee:entities>
 				</isee:loop_indicator>
 				<isee:loop_indicator font_family="Georgia" font_size="10pt" text="Word of mouth" orientation="counter_clockwise" uid="87" x="833.504" y="333.169" width="55.354" height="52.5">
 					<isee:entities>
+						<item uid="4"/>
+						<item uid="7"/>
+						<item uid="8"/>
 						<entity name="receivers_adoption"/>
 						<entity name="Receivers_Adopters"/>
-						<item uid="4"/>
 						<entity name="receiver_adopters_prevalence"/>
-						<item uid="7"/>
 						<entity name="receiver_adopters_with_non_adopters_contacts"/>
-						<item uid="8"/>
 					</isee:entities>
 				</isee:loop_indicator>
 				<alias color="black" background="white" font_style="italic" font_family="Georgia" uid="49" x="798.819" y="652.307" width="45" height="35">
@@ -2324,7 +2240,7 @@ ELSE MAX(0, (cost_per_LSP_non_adopters-cost_per_LSP_adopters)/INIT(cost_per_LSP_
 				<dimensions>
 					<dim name="LSP"/>
 				</dimensions>
-				<eqn>COST_PER_HOUR*Converter_24</eqn>
+				<eqn>COST_PER_HOUR_3*Converter_24</eqn>
 				<units>kr/month/LSP</units>
 			</aux>
 			<aux name="cost per package\nper LSP non adopter">
@@ -2486,6 +2402,10 @@ hub_total_cost</eqn>
 				</dimensions>
 				<units>kr/month/LSP</units>
 			</aux>
+			<aux name="COST PER HOUR 3" access="input">
+				<eqn>270</eqn>
+				<units>kr/hour</units>
+			</aux>
 		</variables>
 		<views>
 			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
@@ -2533,7 +2453,7 @@ hub_total_cost</eqn>
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="2" isee:page_rows="2" isee:scroll_x="253" isee:scroll_y="26" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="826" page_height="579" isee:page_cols="2" isee:page_rows="2" isee:scroll_x="106.25" isee:scroll_y="48.75" zoom="80" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="black" background="white" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -2572,52 +2492,48 @@ hub_total_cost</eqn>
 					</graph>
 					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 				</style>
-				<aux font_style="italic" font_weight="bold" label_side="top" x="524.5" y="211.596" name="COST PER LITER\nOF DIESEL"/>
-				<aux color="blue" background="#FF9500" x="379.834" y="378.285" name="cost per LSP\nnon adopters"/>
-				<aux color="blue" background="#FF9500" x="668.714" y="482.857" name="cost per LSP\nadopters"/>
-				<aux color="blue" background="#FF9500" x="555.31" y="378.285" name="monetary value"/>
-				<connector uid="41" color="black" angle="137.32">
+				<aux font_style="italic" font_weight="bold" font_family="Georgia" label_side="top" x="500.19" y="267.999" name="COST PER LITER\nOF DIESEL"/>
+				<aux color="black" background="white" font_family="Georgia" x="379.834" y="378.285" name="cost per LSP\nnon adopters"/>
+				<aux color="black" background="white" font_family="Georgia" x="530.31" y="432.857" name="cost per LSP\nadopters"/>
+				<aux color="black" background="white" font_family="Georgia" x="530.31" y="363.285" name="monetary value"/>
+				<connector uid="41" color="black" angle="90">
 					<from>cost_per_LSP_adopters</from>
 					<to>monetary_value</to>
 				</connector>
-				<connector uid="42" color="black" angle="0">
+				<connector uid="42" color="black" angle="5.69265">
 					<from>cost_per_LSP_non_adopters</from>
 					<to>monetary_value</to>
 				</connector>
-				<aux color="blue" background="#FF9500" label_side="top" x="644.643" y="332.375" name="adjusted monetary value"/>
-				<aux font_style="italic" font_weight="bold" x="344.738" y="482.857" name="Converter 6"/>
-				<aux font_style="italic" font_weight="bold" x="464.19" y="584.619" name="COST\nPER ADOPTER\nVEHICLE"/>
-				<aux label_side="top" x="428.19" y="482.857" name="LSP non adopter\nvehicle cost"/>
-				<connector uid="44" angle="0">
+				<aux color="#FAA614" background="#FAA614" font_color="#FAA614" font_family="Georgia" label_side="top" x="640.643" y="363.285" name="adjusted monetary value"/>
+				<aux font_style="italic" font_weight="bold" font_family="Georgia" x="188.738" y="456.143" name="Converter 6"/>
+				<aux font_style="italic" font_weight="bold" font_family="Georgia" x="417.19" y="551" name="COST\nPER ADOPTER\nVEHICLE"/>
+				<aux font_family="Georgia" label_side="top" x="297.714" y="447.857" name="LSP non adopter\nvehicle cost"/>
+				<connector uid="44" angle="4.34812">
 					<from>Converter_6</from>
 					<to>LSP_non_adopter_vehicle_cost</to>
 				</connector>
-				<connector uid="45" angle="114.817">
+				<connector uid="45" angle="40.2712">
 					<from>LSP_non_adopter_vehicle_cost</from>
 					<to>cost_per_LSP_non_adopters</to>
 				</connector>
-				<aux font_style="italic" font_weight="bold" label_side="top" x="232.143" y="533.5" name="COST PER HOUR"/>
-				<aux font_style="italic" font_weight="bold" x="189.714" y="299.999" name="Converter 9"/>
-				<aux x="407" y="272.214" name="km cost per LSP\nnon adopter"/>
-				<connector uid="46" angle="207.289">
+				<aux font_style="italic" font_weight="bold" font_family="Georgia" label_side="top" x="185.143" y="382.5" name="COST PER HOUR"/>
+				<aux font_style="italic" font_weight="bold" font_family="Georgia" x="247" y="300.999" name="Converter 9"/>
+				<aux font_family="Georgia" x="428.19" y="309.833" name="km cost per LSP\nnon adopter"/>
+				<connector uid="46" angle="210.158">
 					<from>COST_PER_LITER_OF_DIESEL</from>
 					<to>km_cost_per_LSP_non_adopter</to>
 				</connector>
-				<connector uid="47" angle="255.635">
+				<connector uid="47" angle="234.762">
 					<from>km_cost_per_LSP_non_adopter</from>
 					<to>cost_per_LSP_non_adopters</to>
 				</connector>
-				<aux x="582.286" y="621.714" name="hour cost per LSP\nadopter"/>
-				<connector uid="51" angle="285.592">
-					<from>COST_PER_HOUR</from>
-					<to>hour_cost_per_LSP_adopter</to>
-				</connector>
-				<connector uid="52" angle="58.1009">
+				<aux font_family="Georgia" x="562" y="511" name="hour cost per LSP\nadopter"/>
+				<connector uid="52" angle="112.074">
 					<from>hour_cost_per_LSP_adopter</from>
 					<to>cost_per_LSP_adopters</to>
 				</connector>
-				<aux x="247" y="169.928" name="cost per package\nper LSP non adopter"/>
-				<connector uid="55" angle="122.519">
+				<aux x="223" y="122.928" name="cost per package\nper LSP non adopter"/>
+				<connector uid="55" angle="121.557">
 					<from>cost_per_LSP_non_adopters</from>
 					<to>cost_per_package_per_LSP_non_adopter</to>
 				</connector>
@@ -2626,7 +2542,7 @@ hub_total_cost</eqn>
 					<from>Converter_21</from>
 					<to>cost_per_package_per_LSP_non_adopter</to>
 				</connector>
-				<aux x="677.285" y="165.786" name="cost per package\nper LSP adopter"/>
+				<aux x="704.285" y="102.261" name="cost per package\nper LSP adopter"/>
 				<connector uid="57" angle="45.8429">
 					<from>cost_per_LSP_adopters</from>
 					<to>cost_per_package_per_LSP_adopter</to>
@@ -2635,69 +2551,69 @@ hub_total_cost</eqn>
 					<from>Converter_21</from>
 					<to>cost_per_package_per_LSP_adopter</to>
 				</connector>
-				<aux x="502.786" y="521.5" width="18" height="18" name="LSP adopter\nvehicle cost"/>
-				<aux font_style="italic" font_weight="bold" label_side="top" x="524.5" y="474.143" name="Converter 22"/>
-				<connector uid="59" angle="257.287">
+				<aux font_family="Georgia" x="452.31" y="483.857" name="LSP adopter\nvehicle cost"/>
+				<aux font_style="italic" font_weight="bold" font_family="Georgia" label_side="top" x="343.25" y="509.107" width="18" height="18" name="Converter 22"/>
+				<connector uid="59" angle="18.8958">
 					<from>Converter_22</from>
 					<to>LSP_adopter_vehicle_cost</to>
 				</connector>
-				<connector uid="60" angle="48.6694">
+				<connector uid="60" angle="62.3876">
 					<from>COST_PER_ADOPTER_VEHICLE</from>
 					<to>LSP_adopter_vehicle_cost</to>
 				</connector>
-				<connector uid="61" angle="4.65997">
+				<connector uid="61" angle="33.1785">
 					<from>LSP_adopter_vehicle_cost</from>
 					<to>cost_per_LSP_adopters</to>
 				</connector>
-				<aux font_style="italic" font_weight="bold" x="403.667" y="187.928" name="Converter 23"/>
-				<connector uid="63" angle="272.265">
+				<aux font_style="italic" font_weight="bold" font_family="Georgia" x="361.834" y="240.928" name="Converter 23"/>
+				<connector uid="63" angle="313.92">
 					<from>Converter_23</from>
 					<to>km_cost_per_LSP_non_adopter</to>
 				</connector>
-				<aux font_style="italic" font_weight="bold" x="524.5" y="309.833" name="DYNAMIC COST\nON OFF"/>
-				<connector uid="64" angle="294.232">
+				<aux font_style="italic" font_weight="bold" font_family="Georgia" x="530.31" y="294.833" name="DYNAMIC COST\nON OFF"/>
+				<connector uid="64" angle="270">
 					<from>DYNAMIC_COST_ON_OFF</from>
 					<to>monetary_value</to>
 				</connector>
-				<aux font_style="italic" font_weight="bold" x="371.19" y="557.119" name="COST\nPER NON ADOPTER\nVEHICLE"/>
-				<connector uid="65" angle="46.2726">
+				<aux font_style="italic" font_weight="bold" font_family="Georgia" x="206.738" y="526" name="COST\nPER NON ADOPTER\nVEHICLE"/>
+				<connector uid="65" angle="40.6606">
 					<from>COST_PER_NON_ADOPTER_VEHICLE</from>
 					<to>LSP_non_adopter_vehicle_cost</to>
 				</connector>
-				<aux font_style="italic" font_weight="bold" x="712" y="693" name="Converter 24"/>
-				<connector uid="66" angle="165.069">
+				<aux font_style="italic" font_weight="bold" font_family="Georgia" x="630.393" y="561" name="Converter 24"/>
+				<connector uid="66" angle="143.831">
 					<from>Converter_24</from>
 					<to>hour_cost_per_LSP_adopter</to>
 				</connector>
-				<aux x="297.714" y="360.285" name="hour cost per LSP\nnon adopters"/>
+				<aux font_family="Georgia" x="297.714" y="360.285" name="hour cost per LSP\nnon adopters"/>
 				<connector uid="50" angle="347.637">
 					<from>hour_cost_per_LSP_non_adopters</from>
 					<to>cost_per_LSP_non_adopters</to>
 				</connector>
-				<connector uid="49" angle="101.233">
+				<connector uid="49" angle="11.1634">
 					<from>COST_PER_HOUR</from>
 					<to>hour_cost_per_LSP_non_adopters</to>
 				</connector>
-				<connector uid="48" angle="330.83">
+				<connector uid="48" angle="310.544">
 					<from>Converter_9</from>
 					<to>hour_cost_per_LSP_non_adopters</to>
 				</connector>
-				<aux color="black" font_style="italic" font_weight="bold" x="1122.5" y="91.5" name="Converter 1"/>
-				<aux color="black" font_style="italic" font_weight="bold" x="1451.88" y="268.25" name="Converter 2"/>
-				<aux color="black" font_style="italic" font_weight="bold" x="1033.26" y="350.375" name="Converter 3"/>
-				<aux color="black" font_style="italic" font_weight="bold" x="1010.83" y="126.095" name="kWh CONSUMPTION\nPER KM"/>
-				<aux color="black" x="1128.13" y="172.125" name="hub kWh consumption"/>
+				<aux color="black" font_style="italic" font_weight="bold" font_family="Georgia" x="1006" y="227.75" name="Converter 1"/>
+				<aux color="black" font_style="italic" font_weight="bold" font_family="Georgia" x="1263.38" y="339.107" name="Converter 2"/>
+				<aux color="black" font_style="italic" font_weight="bold" font_family="Georgia" x="947.76" y="413.625" name="Converter 3"/>
+				<aux color="black" font_style="italic" font_weight="bold" font_family="Georgia" x="926.5" y="263.345" name="kWh CONSUMPTION\nPER KM"/>
+				<aux color="black" font_family="Georgia" x="1011.63" y="308.375" name="hub kWh consumption"/>
 				<connector uid="67" color="black" angle="270">
 					<from>Converter_1</from>
 					<to>hub_kWh_consumption</to>
 				</connector>
-				<connector uid="68" color="black" angle="338.574">
+				<connector uid="68" color="black" angle="332.123">
 					<from>kWh_CONSUMPTION_PER_KM</from>
 					<to>hub_kWh_consumption</to>
 				</connector>
-				<aux color="black" x="1221.88" y="195.25" name="hub km cost"/>
-				<aux color="black" font_style="italic" font_weight="bold" label_side="top" x="1231.39" y="131.095" name="COST PER\nkWh"/>
-				<connector uid="69" color="black" angle="261.564">
+				<aux color="black" font_family="Georgia" x="1105.38" y="331.5" name="hub km cost"/>
+				<aux color="black" font_style="italic" font_weight="bold" font_family="Georgia" label_side="top" x="1105.38" y="281.345" name="COST PER\nkWh"/>
+				<connector uid="69" color="black" angle="270">
 					<from>COST_PER_kWh</from>
 					<to>hub_km_cost</to>
 				</connector>
@@ -2705,60 +2621,60 @@ hub_total_cost</eqn>
 					<from>hub_kWh_consumption</from>
 					<to>hub_km_cost</to>
 				</connector>
-				<aux color="black" font_style="italic" font_weight="bold" label_side="top" x="1446.36" y="183.833" name="COST\nPER HUB\nVEHICLE"/>
-				<aux color="black" x="1377" y="223.875" name="hub vehicle cost"/>
-				<connector uid="71" color="black" angle="209.998">
+				<aux color="black" font_style="italic" font_weight="bold" font_family="Georgia" label_side="top" x="1194.5" y="308.375" name="COST\nPER HUB\nVEHICLE"/>
+				<aux color="black" font_family="Georgia" x="1176.5" y="365.125" name="hub vehicle cost"/>
+				<connector uid="71" color="black" angle="252.402">
 					<from>COST_PER_HUB_VEHICLE</from>
 					<to>hub_vehicle_cost</to>
 				</connector>
-				<connector uid="72" color="black" angle="149.347">
+				<connector uid="72" color="black" angle="196.671">
 					<from>Converter_2</from>
 					<to>hub_vehicle_cost</to>
 				</connector>
-				<aux color="black" x="1115" y="306.25" name="hub time cost"/>
-				<connector uid="74" color="black" angle="28.3626">
+				<aux color="black" font_family="Georgia" x="1043.33" y="386.249" name="hub time cost"/>
+				<connector uid="74" color="black" angle="15.9851">
 					<from>Converter_3</from>
 					<to>hub_time_cost</to>
 				</connector>
-				<aux color="black" x="1239.88" y="298.875" name="hub operational cost"/>
+				<aux color="black" font_family="Georgia" x="1123.38" y="435.125" name="hub operational cost"/>
 				<connector uid="75" color="black" angle="272.712">
 					<from>hub_km_cost</from>
 					<to>hub_operational_cost</to>
 				</connector>
-				<connector uid="76" color="black" angle="207.135">
+				<connector uid="76" color="black" angle="232.807">
 					<from>hub_vehicle_cost</from>
 					<to>hub_operational_cost</to>
 				</connector>
-				<connector uid="77" color="black" angle="3.37991">
+				<connector uid="77" color="black" angle="328.595">
 					<from>hub_time_cost</from>
 					<to>hub_operational_cost</to>
 				</connector>
-				<aux color="black" font_style="italic" font_weight="bold" x="1464.36" y="339.25" name="HUB FIXED COST"/>
-				<aux color="#FAA614" background="#FAA614" font_color="#FAA614" x="1311" y="381" name="hub total cost"/>
-				<connector uid="78" color="black" angle="311.323">
+				<aux color="black" font_style="italic" font_weight="bold" font_family="Georgia" x="958.5" y="485.25" name="HUB FIXED COST"/>
+				<aux color="#FAA614" background="#FAA614" font_color="#FAA614" font_family="Georgia" x="1066.5" y="507.25" name="hub total cost"/>
+				<connector uid="78" color="black" angle="231.74">
 					<from>hub_operational_cost</from>
 					<to>hub_total_cost</to>
 				</connector>
-				<connector uid="79" color="black" angle="195.229">
+				<connector uid="79" color="black" angle="348.486">
 					<from>HUB_FIXED_COST</from>
 					<to>hub_total_cost</to>
 				</connector>
-				<aux font_style="italic" font_weight="bold" x="1043" y="267.999" name="COST PER HOUR 2"/>
-				<connector uid="88" angle="311.424">
+				<aux font_style="italic" font_weight="bold" font_family="Georgia" x="958.5" y="360.125" name="COST PER HOUR 2"/>
+				<connector uid="88" angle="342.882">
 					<from>COST_PER_HOUR_2</from>
 					<to>hub_time_cost</to>
 				</connector>
-				<aux x="1183.5" y="512.5" name="total cost of operation"/>
-				<stock font_style="italic" font_weight="bold" x="963.765" y="490.643" name="LSP Potential\nAdopters"/>
+				<aux x="1151.5" y="898.5" name="total cost of operation"/>
+				<stock font_style="italic" font_weight="bold" x="931.765" y="876.643" name="LSP Potential\nAdopters"/>
 				<connector uid="89" angle="20.8274">
 					<from>LSP_Potential_Adopters</from>
 					<to>total_cost_of_operation</to>
 				</connector>
-				<connector uid="90" angle="199.855">
+				<connector uid="90" angle="282.257">
 					<from>hub_total_cost</from>
 					<to>total_cost_of_operation</to>
 				</connector>
-				<aux font_style="italic" font_weight="bold" x="977.825" y="548.5" name="Converter 25"/>
+				<aux font_style="italic" font_weight="bold" x="945.825" y="934.5" name="Converter 25"/>
 				<connector uid="91" angle="56.9789">
 					<from>Converter_25</from>
 					<to>total_cost_of_operation</to>
@@ -2775,23 +2691,28 @@ hub_total_cost</eqn>
 					</from>
 					<to>total_cost_of_operation</to>
 				</connector>
-				<connector uid="96" angle="2.32202">
+				<connector uid="96" angle="0">
 					<from>monetary_value</from>
 					<to>adjusted_monetary_value</to>
 				</connector>
-				<aux font_style="italic" font_weight="bold" x="762" y="544" name="Converter 26"/>
-				<connector uid="97" angle="136.685">
+				<aux font_style="italic" font_weight="bold" font_family="Georgia" x="617" y="446.143" name="Converter 26"/>
+				<connector uid="97" angle="171.287">
 					<from>Converter_26</from>
 					<to>cost_per_LSP_adopters</to>
 				</connector>
-				<connector uid="98" angle="302.905">
+				<connector uid="98" angle="319.758">
 					<from>Converter_26</from>
 					<to>total_cost_of_operation</to>
 				</connector>
-				<alias color="blue" background="#FF9500" font_style="italic" uid="95" x="1282" y="510" width="18" height="18">
+				<aux font_style="italic" font_weight="bold" font_family="Georgia" x="512.31" y="565" name="COST PER HOUR 3"/>
+				<connector uid="99" angle="47.3802">
+					<from>COST_PER_HOUR_3</from>
+					<to>hour_cost_per_LSP_adopter</to>
+				</connector>
+				<alias color="blue" background="#FF9500" font_style="italic" uid="95" x="1250" y="896" width="18" height="18">
 					<of>cost_per_LSP_adopters</of>
 				</alias>
-				<alias color="blue" background="#FF9500" font_style="italic" uid="93" x="1176" y="613" width="18" height="18">
+				<alias color="blue" background="#FF9500" font_style="italic" uid="93" x="1144" y="999" width="18" height="18">
 					<of>cost_per_LSP_non_adopters</of>
 				</alias>
 			</view>
@@ -2963,7 +2884,7 @@ ELSE 0</eqn>
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_rows="2" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="826" page_height="579" isee:page_cols="2" isee:page_rows="2" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="black" background="white" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -3002,55 +2923,55 @@ ELSE 0</eqn>
 					</graph>
 					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 				</style>
-				<aux color="black" font_style="italic" font_weight="bold" x="411.096" y="459.239" name="PROFIT GOAL\nIN PERCENTAGE"/>
-				<aux color="black" x="342.143" y="290.5" name="revenue for\nfee calculation"/>
-				<aux color="black" font_style="italic" font_weight="bold" label_side="top" x="420.096" y="255.453" width="18" height="18" name="ADJUSTMENT TIME\nFOR FEES"/>
-				<aux color="black" font_style="italic" font_weight="bold" x="241.131" y="405.929" width="18" height="18" name="Converter 6"/>
-				<aux color="black" x="507.786" y="262.619" width="18" height="18" name="binary time\nfor fees"/>
-				<connector uid="1" color="black" angle="355.328">
+				<aux color="black" font_style="italic" font_weight="bold" font_family="Georgia" x="494.25" y="387.239" name="PROFIT GOAL\nIN PERCENTAGE"/>
+				<aux color="black" font_family="Georgia" x="496.143" y="242.619" width="18" height="18" name="revenue for\nfee calculation"/>
+				<aux color="black" font_style="italic" font_weight="bold" font_family="Georgia" label_side="top" x="589.679" y="242.619" width="18" height="18" name="ADJUSTMENT TIME\nFOR FEES"/>
+				<aux color="black" font_style="italic" font_weight="bold" font_family="Georgia" label_side="top" x="494.25" y="350.5" name="Converter 6"/>
+				<aux color="black" font_family="Georgia" x="677.786" y="242.619" width="18" height="18" name="binary time\nfor fees"/>
+				<connector uid="1" color="black" angle="0">
 					<from>ADJUSTMENT_TIME_FOR_FEES</from>
 					<to>binary_time_for_fees</to>
 				</connector>
-				<aux color="black" x="299.631" y="195.5" name="revenue"/>
-				<connector uid="2" color="black" angle="269.249">
+				<aux color="black" font_family="Georgia" x="395.631" y="218.619" name="revenue"/>
+				<connector uid="2" color="black" angle="319.806">
 					<from>revenue</from>
 					<to>revenue_for_fee_calculation</to>
 				</connector>
-				<connector uid="3" color="black" angle="196.676">
+				<connector uid="3" color="black" angle="180">
 					<from>ADJUSTMENT_TIME_FOR_FEES</from>
 					<to>revenue_for_fee_calculation</to>
 				</connector>
-				<aux color="black" x="374.846" y="391.304" name="revenue goal"/>
-				<connector uid="4" color="black" angle="118.084">
+				<aux color="black" font_family="Georgia" x="598.679" y="376.929" name="revenue goal"/>
+				<connector uid="4" color="black" angle="5.63839">
 					<from>PROFIT_GOAL_IN_PERCENTAGE</from>
 					<to>revenue_goal</to>
 				</connector>
-				<connector uid="5" color="black" angle="10.7265">
+				<connector uid="5" color="black" angle="345.798">
 					<from>Converter_6</from>
 					<to>revenue_goal</to>
 				</connector>
-				<connector uid="6" color="black" angle="246.845">
+				<connector uid="6" color="black" angle="270">
 					<from>ADJUSTMENT_TIME_FOR_FEES</from>
 					<to>revenue_goal</to>
 				</connector>
-				<aux color="black" x="498.786" y="396.929" name="revenue gap"/>
-				<connector uid="7" color="black" angle="325.806">
+				<aux color="black" font_family="Georgia" x="710.786" y="376.929" name="revenue gap"/>
+				<connector uid="7" color="black" angle="328.644">
 					<from>revenue_for_fee_calculation</from>
 					<to>revenue_gap</to>
 				</connector>
-				<connector uid="8" color="black" angle="357.401">
+				<connector uid="8" color="black" angle="0">
 					<from>revenue_goal</from>
 					<to>revenue_gap</to>
 				</connector>
-				<stock color="black" x="698" y="338.357" name="Hub Fee per Package"/>
-				<flow color="black" x="611.679" y="335.5" name="change in fee\nper package">
+				<stock color="black" font_family="Georgia" x="868" y="318.357" name="Hub Fee per Package"/>
+				<flow color="black" font_family="Georgia" x="781.679" y="315.5" name="change in fee\nper package">
 					<pts>
-						<pt x="535.857" y="335.5"/>
-						<pt x="675.5" y="335.5"/>
+						<pt x="705.857" y="315.5"/>
+						<pt x="845.5" y="315.5"/>
 					</pts>
 				</flow>
-				<aux color="black" font_style="italic" font_weight="bold" x="598.714" y="441.239" name="MAX INCREASE\nIN FEE"/>
-				<connector uid="9" color="black" angle="83.0099">
+				<aux color="black" font_style="italic" font_weight="bold" font_family="Georgia" x="836.5" y="381.239" name="MAX INCREASE\nIN FEE"/>
+				<connector uid="9" color="black" angle="129.826">
 					<from>MAX_INCREASE_IN_FEE</from>
 					<to>change_in_fee_per_package</to>
 				</connector>
@@ -3062,46 +2983,46 @@ ELSE 0</eqn>
 					<from>revenue_gap</from>
 					<to>change_in_fee_per_package</to>
 				</connector>
-				<aux color="black" x="512.25" y="76.715" name="receivers fee"/>
-				<aux color="black" font_style="italic" font_weight="bold" x="602.679" y="21.215" width="18" height="18" name="Converter 9"/>
-				<connector uid="12" color="black" angle="71.8529">
+				<aux color="black" font_family="Georgia" x="483.25" y="139" name="receivers fee"/>
+				<aux color="black" font_style="italic" font_weight="bold" font_family="Georgia" label_side="top" x="599.096" y="121" name="Converter 9"/>
+				<connector uid="12" color="black" angle="122.055">
 					<from>Hub_Fee_per_Package</from>
 					<to>receivers_fee</to>
 				</connector>
-				<connector uid="13" color="black" angle="205.064">
+				<connector uid="13" color="black" angle="188.832">
 					<from>Converter_9</from>
 					<to>receivers_fee</to>
 				</connector>
-				<connector uid="19" color="black" angle="162.558">
+				<connector uid="19" color="black" angle="173.089">
 					<from>receivers_fee</from>
 					<to>revenue</to>
 				</connector>
-				<stock font_style="italic" font_weight="bold" x="227.631" y="59.215" width="45" height="35" name="Receivers Adopters"/>
-				<connector uid="24" angle="268.431">
+				<stock font_style="italic" font_weight="bold" font_family="Georgia" x="319.131" y="192.119" name="Receivers Adopters"/>
+				<connector uid="24" angle="340.894">
 					<from>Receivers_Adopters</from>
 					<to>revenue</to>
 				</connector>
-				<aux x="485" y="160" name="LSPs fee"/>
-				<aux font_style="italic" font_weight="bold" x="570" y="113" name="Converter 13"/>
-				<connector uid="25" angle="191.976">
+				<aux font_family="Georgia" x="494.25" y="195.5" name="LSPs fee"/>
+				<aux font_style="italic" font_weight="bold" font_family="Georgia" label_side="top" x="640.786" y="177.5" name="Converter 13"/>
+				<connector uid="25" angle="187.003">
 					<from>Converter_13</from>
 					<to>LSPs_fee</to>
 				</connector>
-				<connector uid="26" angle="112.345">
+				<connector uid="26" angle="139.047">
 					<from>Hub_Fee_per_Package</from>
 					<to>LSPs_fee</to>
 				</connector>
-				<connector uid="27" angle="178.315">
+				<connector uid="27" angle="166.293">
 					<from>LSPs_fee</from>
 					<to>revenue</to>
 				</connector>
-				<stock font_style="italic" font_weight="bold" x="173" y="181" name="LSP Adopters"/>
-				<connector uid="28" angle="334.983">
+				<stock font_style="italic" font_weight="bold" font_family="Georgia" x="346" y="289" name="LSP Adopters"/>
+				<connector uid="28" angle="54.8094">
 					<from>LSP_Adopters</from>
 					<to>revenue</to>
 				</connector>
-				<aux font_style="italic" font_weight="bold" x="79" y="231.5" name="Converter 14"/>
-				<aux x="185" y="331" name="total system cost"/>
+				<aux font_style="italic" font_weight="bold" font_family="Georgia" x="79" y="231.5" name="Converter 14"/>
+				<aux font_family="Georgia" x="72" y="325" name="total system cost"/>
 				<connector uid="29" angle="248.141">
 					<from>revenue</from>
 					<to>total_system_cost</to>
@@ -3527,7 +3448,7 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="818" page_height="571" isee:page_cols="4" isee:page_rows="3" isee:scroll_x="500" zoom="120" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="826" page_height="579" isee:page_cols="4" isee:page_rows="3" isee:scroll_x="500" zoom="120" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="black" background="white" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -4109,12 +4030,12 @@ INT(packages_per_tour_per_LSP/Converter_5)+1
 			<gf>
 				<yscale min="0" max="100"/>
 				<xpts>0,20,40,60,80,100,120</xpts>
-				<ypts>0,0.1,0.05,0.01,0,0,0</ypts>
+				<ypts>0,0,0,0,0,0,0</ypts>
 			</gf>
 		</isee:control>
-		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Large]" value="18800"/>
-		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Medium]" value="4600"/>
-		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Small]" value="600"/>
+		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Large]" value="24440"/>
+		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Medium]" value="5980"/>
+		<isee:control priority="imex" name="RECEIVERS_PERCEIVED_VALUE[Small]" value="780"/>
 		<isee:control priority="imex" name="SHARE_OF_DEMAND_TO_DIFFERENT_LSP_SIZES[Large]" value="0.39"/>
 		<isee:control priority="imex" name="SHARE_OF_DEMAND_TO_DIFFERENT_LSP_SIZES[Medium]" value="0.53"/>
 		<isee:control priority="imex" name="SHARE_OF_DEMAND_TO_DIFFERENT_LSP_SIZES[Small]" value="0.08"/>
